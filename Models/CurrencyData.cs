@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace CoinView.Models
 {
-    class Currency
+    public class CurrencyData
     {
-        public string Id { get; set; } = string.Empty;
+        public string Id { get; set; }
 		public int Rank { get; set; }
-        public string Symbol { get; set; } = string.Empty;
-		public string Name { get; set; } = string.Empty;
+        public string Symbol { get; set; }
+		public string Name { get; set; }
 		public decimal Supply { get; set; }
         public decimal MaxSuplly { get; set; }
         public decimal MarketCapUsd { get; set; }
@@ -19,6 +19,6 @@ namespace CoinView.Models
         public decimal PriceUsd { get; set; }
         public decimal ChangePercent24Hr { get; set; }
         public decimal Vwap24Hr { get; set; }
-        public string Explorer { get; set; } = string.Empty;
+        public string Explorer { get; set; }
     }
 }

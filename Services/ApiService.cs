@@ -3,6 +3,7 @@ using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using CoinView.Models;
 using Newtonsoft.Json;
 
 namespace CoinView.Services
@@ -40,6 +41,9 @@ namespace CoinView.Services
             {
                 MessageBox.Show($"$Відбулася помилка при спробі отримати дані: {ex.Message}");
             }
+
+
+            Currency.Data data = new Currency.Data();
         }
     }
 }
