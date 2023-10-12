@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoinView.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,9 +18,17 @@ namespace CoinView
 {
 	public partial class MainWindow : Window
 	{
+		private readonly string apiUrl = "https://api.coincap.io/v2/assets";
+		private readonly string filePath = "data.json";
 		public MainWindow()
 		{
 			InitializeComponent();
+		}
+
+		private void Button_Click(object sender, RoutedEventArgs e)
+		{
+			ApiService apiService = new ApiService();
+			_ = apiService.GetCrpytoDataAsync(apiUrl, filePath);
 		}
 	}
 }
