@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
@@ -11,10 +12,12 @@ namespace CoinView.Services
     class ApiService
     {
         private readonly HttpClient _httpClient;
-        public ApiService()
+		private CurrencyRoot currencyRoot = new CurrencyRoot();
+
+		public ApiService()
         {
             _httpClient = new HttpClient();
-        }
+		}
 
         public async Task GetCrpytoDataAsync(string apiUrl, string filePath)
         {
@@ -41,9 +44,14 @@ namespace CoinView.Services
             {
                 MessageBox.Show($"$Відбулася помилка при спробі отримати дані: {ex.Message}");
             }
+        }
 
+        public List<CurrencyData> GetDeserializedData(string filePath)
+        {
+            string data = File.ReadAllText(filePath);
+            currencyRoot = JsonConvert.DeserializeObject<CurrencyRoot>(data);
 
-            Currency.Data data = new Currency.Data();
+			return currencyRoot.Data;
         }
     }
 }

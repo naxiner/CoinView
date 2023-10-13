@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,12 +14,19 @@ namespace CoinView.Models
         public string Symbol { get; set; }
 		public string Name { get; set; }
 		public decimal Supply { get; set; }
-        public decimal MaxSuplly { get; set; }
-        public decimal MarketCapUsd { get; set; }
-        public decimal VolumeUsd24Hr { get; set; }
-        public decimal PriceUsd { get; set; }
-        public decimal ChangePercent24Hr { get; set; }
-        public decimal Vwap24Hr { get; set; }
-        public string Explorer { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public decimal MaxSuplly { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public decimal MarketCapUsd { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public decimal VolumeUsd24Hr { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public decimal PriceUsd { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public decimal ChangePercent24Hr { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public decimal Vwap24Hr { get; set; }
+		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+		public string Explorer { get; set; }
     }
 }
