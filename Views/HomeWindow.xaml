@@ -12,5 +12,6 @@
     <Grid>
         <Button x:Name="btnHide" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
         <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
+        <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
     </Grid>
 </Window>

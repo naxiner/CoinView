@@ -27,16 +27,15 @@ namespace CoinView
 		public MainWindow()
 		{
 			InitializeComponent();
+			StartApplication();
 		}
 
-		private async void Button_Click(object sender, RoutedEventArgs e)
+		private async void StartApplication()
 		{
 			ApiService apiService = new ApiService();
 			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
 			currencyRoot.Data = apiService.GetDeserializedData(filePath);
-
 			var homeWindow = new HomeWindow();
-
 			homeWindow.Left = this.Left;
 			homeWindow.Top = this.Top;
 			homeWindow.Show();

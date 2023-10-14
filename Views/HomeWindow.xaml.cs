@@ -15,7 +15,7 @@ using System.Windows.Shapes;
 namespace CoinView.Views
 {
 	/// <summary>
-	/// Логика взаимодействия для HomeWindow.xaml
+	/// Логіка для взаємодії з HomeWindow.xaml
 	/// </summary>
 	public partial class HomeWindow : Window
 	{
@@ -40,6 +40,11 @@ namespace CoinView.Views
 			{
 				DragMove();
 			}
+		}
+
+		private void btnMenu_Click(object sender, RoutedEventArgs e)
+		{
+			// Обробка події натискання кнопки меню
 		}
 	}
 }
