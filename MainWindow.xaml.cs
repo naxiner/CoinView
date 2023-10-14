@@ -1,5 +1,6 @@
 ﻿using CoinView.Models;
 using CoinView.Services;
+using CoinView.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,13 @@ namespace CoinView
 			ApiService apiService = new ApiService();
 			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
 			currencyRoot.Data = apiService.GetDeserializedData(filePath);
+
+			var homeWindow = new HomeWindow();
+
+			homeWindow.Left = this.Left;
+			homeWindow.Top = this.Top;
+			homeWindow.Show();
+			Close();
 		}
 	}
 }
