@@ -1,4 +1,6 @@
-﻿using System;
+﻿using CoinView.Models;
+using CoinView.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +22,20 @@ namespace CoinView.Views
 	/// </summary>
 	public partial class HomeWindow : Window
 	{
+		private readonly string apiUrl = "https://api.coincap.io/v2/assets";
+		private readonly string filePath = "data.json";
+		private CurrencyRoot currencyRoot = new CurrencyRoot();
+
+		List<Label> lbCurrencyNames = new List<Label>();
+		List<Label> lbCurrencySymbols = new List<Label>();
+		List<Label> lbCurrencyPrices = new List<Label>();
+		List<Label> lbCurrencyChangePercents = new List<Label>();
+
 		public HomeWindow()
 		{
 			InitializeComponent();
+			FillInList();
+			UpdateCurrencyData();
 		}
 
 		private void btnHide_Click(object sender, RoutedEventArgs e)
@@ -58,6 +71,58 @@ namespace CoinView.Views
 
 			animation.Duration = TimeSpan.FromSeconds(0.2);
 			MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
+		}
+
+		private void FillInList() 
+		{
+			lbCurrencyNames.Add(lbCurrencyName1);
+			lbCurrencyNames.Add(lbCurrencyName2);
+			lbCurrencyNames.Add(lbCurrencyName3);
+			lbCurrencyNames.Add(lbCurrencyName4);
+			lbCurrencyNames.Add(lbCurrencyName5);
+
+			lbCurrencySymbols.Add(lbCurrencySymbol1);
+			lbCurrencySymbols.Add(lbCurrencySymbol2);
+			lbCurrencySymbols.Add(lbCurrencySymbol3);
+			lbCurrencySymbols.Add(lbCurrencySymbol4);
+			lbCurrencySymbols.Add(lbCurrencySymbol5);
+
+			lbCurrencyPrices.Add(lbCurrencyPrice1);
+			lbCurrencyPrices.Add(lbCurrencyPrice2);
+			lbCurrencyPrices.Add(lbCurrencyPrice3);
+			lbCurrencyPrices.Add(lbCurrencyPrice4);
+			lbCurrencyPrices.Add(lbCurrencyPrice5);
+
+			lbCurrencyChangePercents.Add(lbCurrencyChangePercent1);
+			lbCurrencyChangePercents.Add(lbCurrencyChangePercent2);
+			lbCurrencyChangePercents.Add(lbCurrencyChangePercent3);
+			lbCurrencyChangePercents.Add(lbCurrencyChangePercent4);
+			lbCurrencyChangePercents.Add(lbCurrencyChangePercent5);
+		}
+
+		private async void UpdateCurrencyData()
+		{
+			ApiService apiService = new ApiService();
+			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
+			currencyRoot.Data = apiService.GetDeserializedData(filePath);
+
+			for (int i = 0; i < lbCurrencyNames.Count; i++)
+			{
+				lbCurrencyNames[i].Content = currencyRoot.Data[i].Name;
+				lbCurrencySymbols[i].Content = currencyRoot.Data[i].Symbol;
+				lbCurrencyPrices[i].Content = $"${currencyRoot.Data[i].PriceUsd}";
+
+				if (currencyRoot.Data[i].ChangePercent24Hr > 0)
+				{
+					lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Green);
+					lbCurrencyChangePercents[i].Content = $"↑ {currencyRoot.Data[i].ChangePercent24Hr}%";
+				}
+				else
+				{
+					lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Red);
+					lbCurrencyChangePercents[i].Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr}%";
+				}
+			}
 		}
 	}
 }

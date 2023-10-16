@@ -20,10 +20,6 @@ namespace CoinView
 {
 	public partial class MainWindow : Window
 	{
-		private readonly string apiUrl = "https://api.coincap.io/v2/assets";
-		private readonly string filePath = "data.json";
-		private CurrencyRoot currencyRoot = new CurrencyRoot();
-
 		public MainWindow()
 		{
 			InitializeComponent();
@@ -32,9 +28,6 @@ namespace CoinView
 
 		private async void StartApplication()
 		{
-			ApiService apiService = new ApiService();
-			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
-			currencyRoot.Data = apiService.GetDeserializedData(filePath);
 			var homeWindow = new HomeWindow();
 			homeWindow.Left = this.Left;
 			homeWindow.Top = this.Top;
