@@ -97,7 +97,7 @@ namespace CoinView.Views
 		{
 			ApiService apiService = new ApiService();
 			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
-			currencyRoot.Data = apiService.GetDeserializedData(filePath);
+			currencyRoot = apiService.GetDeserializedData(filePath);
 
 			for (int i = 0; i < lbCurrencyNames.Count; i++)
 			{
@@ -116,6 +116,8 @@ namespace CoinView.Views
 					lbCurrencyChangePercents[i].Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr}%";
 				}
 			}
+
+			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
 
 		private void btnCopy1_Click(object sender, RoutedEventArgs e)
@@ -157,5 +159,5 @@ namespace CoinView.Views
 		{
 			UpdateCurrencyData();
 		}
-	}
+    }
 }

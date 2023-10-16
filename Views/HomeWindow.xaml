@@ -44,6 +44,8 @@
         <Label x:Name="lbCurrencyPrice5" FontFamily="{StaticResource Jost-Regular}" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,283,360,119" FontSize="20"/>
         <Label x:Name="lbCurrencyChangePercent5" FontFamily="{StaticResource Jost-Regular}" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,283,70,119" FontSize="20"/>
 
+        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
+
         <StackPanel Margin="737,87,18,119">
             <Button x:Name="btnCopy1" Opacity="0" Height="49" Click="btnCopy1_Click"/>
             <Button x:Name="btnCopy2" Opacity="0" Height="49" Click="btnCopy2_Click"/>

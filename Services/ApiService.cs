@@ -46,12 +46,13 @@ namespace CoinView.Services
             }
         }
 
-        public List<CurrencyData> GetDeserializedData(string filePath)
+        public CurrencyRoot GetDeserializedData(string filePath)
         {
             string data = File.ReadAllText(filePath);
             currencyRoot = JsonConvert.DeserializeObject<CurrencyRoot>(data);
+            currencyRoot.DateTime = DateTime.Now;
 
-			return currencyRoot.Data;
+			return currencyRoot;
         }
     }
 }
