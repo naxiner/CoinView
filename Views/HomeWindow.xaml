@@ -44,6 +44,16 @@
         <Label x:Name="lbCurrencyPrice5" FontFamily="{StaticResource Jost-Regular}" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,283,360,119" FontSize="20"/>
         <Label x:Name="lbCurrencyChangePercent5" FontFamily="{StaticResource Jost-Regular}" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,283,70,119" FontSize="20"/>
 
+        <StackPanel Margin="737,87,18,119">
+            <Button x:Name="btnCopy1" Opacity="0" Height="49" Click="btnCopy1_Click"/>
+            <Button x:Name="btnCopy2" Opacity="0" Height="49" Click="btnCopy2_Click"/>
+            <Button x:Name="btnCopy3" Opacity="0" Height="49" Click="btnCopy3_Click"/>
+            <Button x:Name="btnCopy4" Opacity="0" Height="49" Click="btnCopy4_Click"/>
+            <Button x:Name="btnCopy5" Opacity="0" Height="49" Click="btnCopy5_Click"/>
+        </StackPanel>
+        
+        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20"/>
+
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
             <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0"/>

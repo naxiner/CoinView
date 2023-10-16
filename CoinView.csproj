@@ -12,7 +12,6 @@
     <None Remove="Resources\Fonts\Jost-Medium.ttf" />
     <None Remove="Resources\Fonts\Jost-Regular.ttf" />
     <None Remove="Resources\Images\HomeWindow.png" />
-    <None Remove="Resources\Images\MenuTab.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -24,7 +23,6 @@
     <Resource Include="Resources\Fonts\Jost-Medium.ttf" />
     <Resource Include="Resources\Fonts\Jost-Regular.ttf" />
     <Resource Include="Resources\Images\HomeWindow.png" />
-    <Resource Include="Resources\Images\MenuTab.png" />
   </ItemGroup>
 
 </Project>
