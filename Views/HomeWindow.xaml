@@ -52,7 +52,7 @@
             <Button x:Name="btnCopy5" Opacity="0" Height="49" Click="btnCopy5_Click"/>
         </StackPanel>
         
-        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20"/>
+        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
 
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>

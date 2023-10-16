@@ -152,5 +152,10 @@ namespace CoinView.Views
 				$"{currencyRoot.Data[index].ChangePercent24Hr}%";
 			return textToCopy;
 		}
+
+		private void btnRefresh_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateCurrencyData();
+		}
 	}
 }
