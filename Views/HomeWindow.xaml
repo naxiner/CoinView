@@ -13,5 +13,14 @@
         <Button x:Name="btnHide" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
         <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+
+        <Grid Name="MenuPanel" Width="200" HorizontalAlignment="Left" Margin="0,39,0,0">
+            <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
+            <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0"/>
+            <Button x:Name="btnMenuTop100" Margin="14,67,14,306" Opacity="0"/>
+            <Button x:Name="btnMenuSearch" Margin="14,119,14,254" Opacity="0"/>
+            <Button x:Name="btnMenuSettings" Margin="14,171,14,202" Opacity="0"/>
+        </Grid>
+
     </Grid>
 </Window>

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <None Remove="Resources\Images\HomeWindow.png" />
+    <None Remove="Resources\Images\MenuTab.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,6 +18,7 @@
 
   <ItemGroup>
     <Resource Include="Resources\Images\HomeWindow.png" />
+    <Resource Include="Resources\Images\MenuTab.png" />
   </ItemGroup>
 
 </Project>

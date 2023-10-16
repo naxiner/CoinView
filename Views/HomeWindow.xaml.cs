@@ -9,6 +9,7 @@ using System.Windows.Data;
 using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
@@ -44,7 +45,19 @@ namespace CoinView.Views
 
 		private void btnMenu_Click(object sender, RoutedEventArgs e)
 		{
-			// Обробка події натискання кнопки меню
+			DoubleAnimation animation = new DoubleAnimation();
+
+			if (MenuPanel.Width == 0)
+			{
+				animation.To = 200;
+			}
+			else
+			{
+				animation.To = 0;
+			}
+
+			animation.Duration = TimeSpan.FromSeconds(0.2);
+			MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
 		}
 	}
 }
