@@ -34,8 +34,11 @@
 
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
 
-        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
         <Button x:Name="btnShowSource" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
+
+        <Button x:Name="btnBackward" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
+        <Button x:Name="btnForward" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
+        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
 
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>

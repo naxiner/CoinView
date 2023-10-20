@@ -1,21 +1,12 @@
 ﻿using CoinView.Models;
 using CoinView.Services;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Security.Policy;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CoinView.Views
 {
@@ -88,10 +79,6 @@ namespace CoinView.Views
 			Close();
 		}
 
-		private void btnRefresh_Click(object sender, RoutedEventArgs e)
-		{
-			UpdateCurrencyData();
-		}
 		private void btnShowSource_Click(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo
@@ -101,36 +88,55 @@ namespace CoinView.Views
 			});
 		}
 
+		private void btnForward_Click(object sender, RoutedEventArgs e)
+		{
+			index += 1;
+			if (index > currencyRoot.Data.Count - 1)
+			{
+				index = currencyRoot.Data.Count - 1;
+			}
+			UpdateCurrencyData();
+		}
+
+		private void btnBackward_Click(object sender, RoutedEventArgs e)
+		{
+			index -= 1;
+			if (index < 0)
+			{
+				index = 0;
+			}
+			UpdateCurrencyData();
+		}
+
+		private void btnRefresh_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateCurrencyData();
+		}
+
 		private async void UpdateCurrencyData()
 		{
 			ApiService apiService = new ApiService();
 			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
 			currencyRoot = apiService.GetDeserializedData(filePath);
 
-			for (int i = 0; i < currencyRoot.Data.Count; i++)
+			lbCurrencyName.Content = currencyRoot.Data[index].Name;
+			lbCurrencySymbol.Content = currencyRoot.Data[index].Symbol;
+			lbCurrencyPrice.Content = $"${currencyRoot.Data[index].PriceUsd}";
+			lbCurrencySupply.Content = $"${currencyRoot.Data[index].Supply.ToString("0.00")}";
+			lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[index].MaxSupply.ToString("0.00")}";
+
+			if (currencyRoot.Data[index].ChangePercent24Hr > 0)
 			{
-				lbCurrencyName.Content = currencyRoot.Data[i].Name;
-				lbCurrencySymbol.Content = currencyRoot.Data[i].Symbol;
-				
-				lbCurrencyPrice.Content = $"${currencyRoot.Data[i].PriceUsd}";
-				lbCurrencySupply.Content = $"${currencyRoot.Data[i].Supply.ToString("0.00")}";
-				lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[i].MaxSupply.ToString("0.00")}";
-
-
-				if (currencyRoot.Data[i].ChangePercent24Hr > 0)
-				{
-					lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Green);
-					lbCurrencyChangePercent.Content = $"↑ {currencyRoot.Data[i].ChangePercent24Hr}%";
-				}
-				else
-				{
-					lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Red);
-					lbCurrencyChangePercent.Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr}%";
-				}
-
-				lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[i].Vwap24Hr}";
+				lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Green);
+				lbCurrencyChangePercent.Content = $"↑ {currencyRoot.Data[index].ChangePercent24Hr}%";
+			}
+			else
+			{
+				lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Red);
+				lbCurrencyChangePercent.Content = $"↓ {currencyRoot.Data[index].ChangePercent24Hr}%";
 			}
 
+			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[index].Vwap24Hr}";
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
 	}
