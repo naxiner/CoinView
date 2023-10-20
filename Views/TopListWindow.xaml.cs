@@ -94,7 +94,11 @@ namespace CoinView.Views
 		}
 		private void btnShowSource_Click(object sender, RoutedEventArgs e)
 		{
-			
+			Process.Start(new ProcessStartInfo
+			{
+				FileName = "cmd",
+				Arguments = $"/c start {currencyRoot.Data[index].Explorer}"
+			});
 		}
 
 		private async void UpdateCurrencyData()
