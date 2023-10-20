@@ -31,6 +31,14 @@ namespace CoinView.Views
 			UpdateCurrencyData();
 		}
 
+		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+		{
+			if (e.LeftButton == MouseButtonState.Pressed)
+			{
+				DragMove();
+			}
+		}
+
 		private void btnHide_Click(object sender, RoutedEventArgs e)
 		{
 			this.WindowState = WindowState.Minimized;
@@ -39,14 +47,6 @@ namespace CoinView.Views
 		private void btnClose_Click(object sender, RoutedEventArgs e)
 		{
 			this.Close();
-		}
-
-		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			if (e.LeftButton == MouseButtonState.Pressed)
-			{
-				DragMove();
-			}
 		}
 
 		private void btnMenu_Click(object sender, RoutedEventArgs e)
@@ -65,6 +65,20 @@ namespace CoinView.Views
 			animation.Duration = TimeSpan.FromSeconds(0.2);
 			MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
 		}
+
+		private void btnMenuHome_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateCurrencyData();
+		}
+
+		private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
+		{
+			var topListWindow = new TopListWindow();
+			topListWindow.Left = this.Left;
+			topListWindow.Top = this.Top;
+			topListWindow.Show();
+			Close();
+        }
 
 		private void FillInList() 
 		{
@@ -159,19 +173,5 @@ namespace CoinView.Views
 		{
 			UpdateCurrencyData();
 		}
-
-		private void btnMenuHome_Click(object sender, RoutedEventArgs e)
-		{
-			UpdateCurrencyData();
-		}
-
-		private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
-		{
-			var topListWindow = new TopListWindow();
-			topListWindow.Left = this.Left;
-			topListWindow.Top = this.Top;
-			topListWindow.Show();
-			Close();
-        }
     }
 }

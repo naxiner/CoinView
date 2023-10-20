@@ -13,5 +13,36 @@
         <Button x:Name="btnHide" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
         <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+
+        <Label x:Name="lbCurrencyName" Content="Bitcoin" Margin="275,58,275,345" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" FontWeight="Bold"/>
+        <Label x:Name="lbCurrencySymbol" Content="BTC" Margin="275,105,275,305" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+
+        <Label Content="Ціна" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,156,400,259" FontSize="16"/>
+        <Label x:Name="lbCurrencyPrice" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="25,176,400,226" FontSize="20"/>
+
+        <Label Content="Кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,210,400,206" FontSize="16"/>
+        <Label x:Name="lbCurrencySupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="25,228,400,174" FontSize="20"/>
+
+        <Label Content="Максимальна кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,262,400,154" FontSize="16"/>
+        <Label x:Name="lbCurrencyMaxSupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="25,279,400,123" FontSize="20"/>
+
+        <Label Content="Зміна за 24 години" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,156,25,259" FontSize="16"/>
+        <Label x:Name="lbCurrencyChangePercent" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="400,176,20,226" FontSize="20"/>
+
+        <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,210,26,205" FontSize="16"/>
+        <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="398,228,22,174" FontSize="20"/>
+
+        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
+
+        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
+        <Button x:Name="btnShowSource" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
+
+        <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
+            <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
+            <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
+            <Button x:Name="btnMenuTop100" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
+            <Button x:Name="btnMenuSearch" Margin="14,119,14,254" Opacity="0"/>
+            <Button x:Name="btnMenuSettings" Margin="14,171,14,202" Opacity="0"/>
+        </Grid>
     </Grid>
 </Window>

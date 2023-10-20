@@ -1,9 +1,4 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CoinView.Models
 {
@@ -15,7 +10,7 @@ namespace CoinView.Models
 		public string Name { get; set; }
 		public decimal Supply { get; set; }
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
-		public decimal MaxSuplly { get; set; }
+		public decimal MaxSupply { get; set; }
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
 		public decimal MarketCapUsd { get; set; }
 		[JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
