@@ -13,9 +13,11 @@
     <None Remove="Resources\Fonts\Jost-Regular.ttf" />
     <None Remove="Resources\Images\HomeWindow.png" />
     <None Remove="Resources\Images\MenuTab.png" />
+    <None Remove="Resources\Images\TopListWindow.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
   </ItemGroup>
 
@@ -25,6 +27,7 @@
     <Resource Include="Resources\Fonts\Jost-Regular.ttf" />
     <Resource Include="Resources\Images\HomeWindow.png" />
     <Resource Include="Resources\Images\MenuTab.png" />
+    <Resource Include="Resources\Images\TopListWindow.png" />
   </ItemGroup>
 
 </Project>

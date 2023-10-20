@@ -159,5 +159,19 @@ namespace CoinView.Views
 		{
 			UpdateCurrencyData();
 		}
+
+		private void btnMenuHome_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateCurrencyData();
+		}
+
+		private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
+		{
+			var topListWindow = new TopListWindow();
+			topListWindow.Left = this.Left;
+			topListWindow.Top = this.Top;
+			topListWindow.Show();
+			Close();
+        }
     }
 }
