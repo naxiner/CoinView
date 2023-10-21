@@ -87,6 +87,10 @@ namespace CoinView.Views
 				Arguments = $"/c start {currencyRoot.Data[index].Explorer}"
 			});
 		}
+		private void btnCopy_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(CopyByIndex(index));
+		}
 
 		private void btnForward_Click(object sender, RoutedEventArgs e)
 		{
@@ -138,6 +142,19 @@ namespace CoinView.Views
 
 			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[index].Vwap24Hr}";
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
+		}
+
+		private string CopyByIndex(int index)
+		{
+			string textToCopy =
+				$"{currencyRoot.Data[index].Name} " +
+				$"{currencyRoot.Data[index].Symbol} " +
+				$"${currencyRoot.Data[index].PriceUsd} " +
+				$"{currencyRoot.Data[index].ChangePercent24Hr}% " +
+				$"${currencyRoot.Data[index].Supply.ToString("0.00")} " +
+				$"${currencyRoot.Data[index].MaxSupply.ToString("0.00")} " +
+				$"${currencyRoot.Data[index].Vwap24Hr} ";
+			return textToCopy;
 		}
 	}
 }

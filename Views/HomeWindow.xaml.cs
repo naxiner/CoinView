@@ -80,6 +80,46 @@ namespace CoinView.Views
 			Close();
         }
 
+		private void btnCopy1_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(CopyByIndex(0));
+		}
+
+		private void btnCopy2_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(CopyByIndex(1));
+		}
+
+		private void btnCopy3_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(CopyByIndex(2));
+		}
+
+		private void btnCopy4_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(CopyByIndex(3));
+		}
+
+		private void btnCopy5_Click(object sender, RoutedEventArgs e)
+		{
+			Clipboard.SetText(CopyByIndex(4));
+		}
+
+		private void btnRefresh_Click(object sender, RoutedEventArgs e)
+		{
+			UpdateCurrencyData();
+		}
+
+		private string CopyByIndex(int index)
+		{
+			string textToCopy =
+				$"{currencyRoot.Data[index].Name} " +
+				$"{currencyRoot.Data[index].Symbol} " +
+				$"${currencyRoot.Data[index].PriceUsd} " +
+				$"{currencyRoot.Data[index].ChangePercent24Hr}%";
+			return textToCopy;
+		}
+
 		private void FillInList() 
 		{
 			lbCurrencyNames.Add(lbCurrencyName1);
@@ -132,46 +172,6 @@ namespace CoinView.Views
 			}
 
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
-		}
-
-		private void btnCopy1_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(CopyByIndex(0));
-		}
-
-		private void btnCopy2_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(CopyByIndex(1));
-		}
-
-		private void btnCopy3_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(CopyByIndex(2));
-		}
-
-		private void btnCopy4_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(CopyByIndex(3));
-		}
-
-		private void btnCopy5_Click(object sender, RoutedEventArgs e)
-		{
-			Clipboard.SetText(CopyByIndex(4));
-		}
-
-		private string CopyByIndex(int index)
-		{
-			string textToCopy =
-				$"{currencyRoot.Data[index].Name} " +
-				$"{currencyRoot.Data[index].Symbol} " +
-				$"${currencyRoot.Data[index].PriceUsd} " +
-				$"{currencyRoot.Data[index].ChangePercent24Hr}%";
-			return textToCopy;
-		}
-
-		private void btnRefresh_Click(object sender, RoutedEventArgs e)
-		{
-			UpdateCurrencyData();
 		}
     }
 }
