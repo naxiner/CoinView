@@ -126,8 +126,8 @@ namespace CoinView.Views
 			lbCurrencyName.Content = currencyRoot.Data[index].Name;
 			lbCurrencySymbol.Content = currencyRoot.Data[index].Symbol;
 			lbCurrencyPrice.Content = $"${currencyRoot.Data[index].PriceUsd}";
-			lbCurrencySupply.Content = $"${currencyRoot.Data[index].Supply.ToString("0.00")}";
-			lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[index].MaxSupply.ToString("0.00")}";
+			lbCurrencySupply.Content = $"${currencyRoot.Data[index].Supply:0.00}";
+			lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[index].MaxSupply:0.00}";
 
 			if (currencyRoot.Data[index].ChangePercent24Hr > 0)
 			{
@@ -151,8 +151,8 @@ namespace CoinView.Views
 				$"{currencyRoot.Data[index].Symbol} " +
 				$"${currencyRoot.Data[index].PriceUsd} " +
 				$"{currencyRoot.Data[index].ChangePercent24Hr}% " +
-				$"${currencyRoot.Data[index].Supply.ToString("0.00")} " +
-				$"${currencyRoot.Data[index].MaxSupply.ToString("0.00")} " +
+				$"${currencyRoot.Data[index].Supply:0.00} " +
+				$"${currencyRoot.Data[index].MaxSupply:0.00} " +
 				$"${currencyRoot.Data[index].Vwap24Hr} ";
 			return textToCopy;
 		}
