@@ -87,6 +87,12 @@ namespace CoinView.Views
 				Arguments = $"/c start {currencyRoot.Data[index].Explorer}"
 			});
 		}
+
+		private void btnShowChart_Click(object sender, RoutedEventArgs e)
+		{
+
+		}
+
 		private void btnCopy_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(index));
@@ -156,5 +162,5 @@ namespace CoinView.Views
 				$"${currencyRoot.Data[index].Vwap24Hr} ";
 			return textToCopy;
 		}
-	}
+    }
 }

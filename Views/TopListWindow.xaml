@@ -33,7 +33,8 @@
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
 
         <Button x:Name="btnShowSource" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
-        <Button x:Name="btnCopy" Opacity="0" Margin="201,343,427,68" Click="btnCopy_Click" />
+        <Button x:Name="btnShowChart" Opacity="0" Margin="201,343,427,68" Click="btnShowChart_Click" />
+        <Button x:Name="btnCopy" Opacity="0" Margin="383,343,245,68" Click="btnCopy_Click" />
 
         <Button x:Name="btnBackward" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
         <Button x:Name="btnForward" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
