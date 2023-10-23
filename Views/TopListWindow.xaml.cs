@@ -1,7 +1,12 @@
 ﻿using CoinView.Models;
 using CoinView.Services;
+using LiveCharts;
+using LiveCharts.Wpf;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -17,8 +22,14 @@ namespace CoinView.Views
 	{
 		private readonly string apiUrl = "https://api.coincap.io/v2/assets";
 		private readonly string filePath = "data.json";
+		private readonly string filePathHistroy = "history.json";
 		private CurrencyRoot currencyRoot = new CurrencyRoot();
+		private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
 		private int index = 0;
+
+		public SeriesCollection SeriesCollection { get; set; }
+		public string[] Labels { get; set; }
+		public Func<double, string> YFormatter { get; set; }
 
 		public TopListWindow()
 		{
@@ -88,9 +99,21 @@ namespace CoinView.Views
 			});
 		}
 
-		private void btnShowChart_Click(object sender, RoutedEventArgs e)
+		private async void btnShowChart_Click(object sender, RoutedEventArgs e)
 		{
-
+			if (lvcChart.Visibility == Visibility.Hidden)
+			{
+				var chartValues = await UpdateCurrencyHistory();
+				UpdateCurrencyChart();
+				YFormatter = value => value.ToString("N2") + "$";
+				Labels = chartValues.Select(x => x.Date.ToString("d")).ToArray();
+				DataContext = this;
+				lvcChart.Visibility = Visibility.Visible;	
+			}
+			else
+			{
+				lvcChart.Visibility = Visibility.Hidden;
+			}
 		}
 
 		private void btnCopy_Click(object sender, RoutedEventArgs e)
@@ -162,5 +185,34 @@ namespace CoinView.Views
 				$"${currencyRoot.Data[index].Vwap24Hr} ";
 			return textToCopy;
 		}
-    }
+
+		private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
+		{
+			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[index].Id}/history?interval=d1";
+			ApiService apiService = new ApiService();
+			await apiService.GetCrpytoDataAsync(url, filePathHistroy);
+			currencyHistory = apiService.GetDeserializedHistory(filePathHistroy);
+
+			DateTimeOffset dateEnd = DateTimeOffset.Now;
+			DateTimeOffset dateStart = dateEnd.AddDays(-7);
+
+			return currencyHistory
+				.Where(x => x.Date.ToLocalTime() < dateEnd && x.Date.ToLocalTime() > dateStart)
+				.ToList();
+		}
+
+		private void UpdateCurrencyChart()
+		{
+			SeriesCollection = new SeriesCollection
+			{
+				new LineSeries
+				{
+					Title = currencyRoot.Data[index].Id,
+					Values = new ChartValues<decimal>(currencyHistory.Select(x=>x.PriceUsd)),
+					StrokeThickness = 3
+				}
+			};
+		}
+
+	}
 }

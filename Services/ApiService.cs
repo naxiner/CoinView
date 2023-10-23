@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Documents;
 using CoinView.Models;
 using Newtonsoft.Json;
 
@@ -12,6 +14,7 @@ namespace CoinView.Services
     {
         private readonly HttpClient _httpClient;
 		private CurrencyRoot currencyRoot = new CurrencyRoot();
+		private CurrencyHistoryList currencyHistory = new CurrencyHistoryList();
 
 		public ApiService()
         {
@@ -53,5 +56,12 @@ namespace CoinView.Services
 
 			return currencyRoot;
         }
-    }
+
+        public List<CurrencyHistory> GetDeserializedHistory(string filePath)
+        {
+            string data = File.ReadAllText(filePath);
+            currencyHistory = JsonConvert.DeserializeObject<CurrencyHistoryList>(data);
+            return currencyHistory.Data;
+		}
+	}
 }

@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
         WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown">
@@ -29,7 +30,7 @@
 
         <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,262,400,154" FontSize="16"/>
         <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="25,279,400,123" FontSize="20"/>
-        
+
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
 
         <Button x:Name="btnShowSource" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
@@ -39,7 +40,16 @@
         <Button x:Name="btnBackward" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
         <Button x:Name="btnForward" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
         <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
-        
+        <lvc:CartesianChart x:Name="lvcChart" Visibility="Hidden" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="Bisque" VerticalAlignment="Top" Height="277" Margin="18,56,18,0">
+            <lvc:CartesianChart.AxisY>
+                <lvc:Axis FontSize="10" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+            </lvc:CartesianChart.AxisY>
+            <lvc:CartesianChart.AxisX>
+                <lvc:Axis FontSize="10" Labels="{Binding Labels}"></lvc:Axis>
+            </lvc:CartesianChart.AxisX>
+        </lvc:CartesianChart>
+
+
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
             <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
