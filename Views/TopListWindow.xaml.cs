@@ -1,5 +1,6 @@
 ﻿using CoinView.Models;
 using CoinView.Services;
+using CoinView.Utils;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System;
@@ -20,9 +21,6 @@ namespace CoinView.Views
 	/// </summary>
 	public partial class TopListWindow : Window
 	{
-		private readonly string apiUrl = "https://api.coincap.io/v2/assets";
-		private readonly string filePath = "data.json";
-		private readonly string filePathHistroy = "history.json";
 		private CurrencyRoot currencyRoot = new CurrencyRoot();
 		private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
 		private int index = 0;
@@ -152,8 +150,8 @@ namespace CoinView.Views
 		private async void UpdateCurrencyData()
 		{
 			ApiService apiService = new ApiService();
-			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
-			currencyRoot = apiService.GetDeserializedData(filePath);
+			await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
+			currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
 
 			lbCurrencyName.Content = currencyRoot.Data[index].Name;
 			lbCurrencySymbol.Content = currencyRoot.Data[index].Symbol;
@@ -193,8 +191,8 @@ namespace CoinView.Views
 		{
 			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[index].Id}/history?interval=d1";
 			ApiService apiService = new ApiService();
-			await apiService.GetCrpytoDataAsync(url, filePathHistroy);
-			currencyHistory = apiService.GetDeserializedHistory(filePathHistroy);
+			await apiService.GetCrpytoDataAsync(url, Constants.FilePathHistory);
+			currencyHistory = apiService.GetDeserializedHistory(Constants.FilePathHistory);
 
 			DateTimeOffset dateEnd = DateTimeOffset.Now;
 			DateTimeOffset dateStart = dateEnd.AddDays(-7);

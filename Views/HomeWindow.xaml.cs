@@ -1,5 +1,6 @@
 ﻿using CoinView.Models;
 using CoinView.Services;
+using CoinView.Utils;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -15,8 +16,6 @@ namespace CoinView.Views
 	/// </summary>
 	public partial class HomeWindow : Window
 	{
-		private readonly string apiUrl = "https://api.coincap.io/v2/assets";
-		private readonly string filePath = "data.json";
 		private CurrencyRoot currencyRoot = new CurrencyRoot();
 
 		List<Label> lbCurrencyNames = new List<Label>();
@@ -150,8 +149,8 @@ namespace CoinView.Views
 		private async void UpdateCurrencyData()
 		{
 			ApiService apiService = new ApiService();
-			await apiService.GetCrpytoDataAsync(apiUrl, filePath);
-			currencyRoot = apiService.GetDeserializedData(filePath);
+			await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
+			currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
 
 			for (int i = 0; i < lbCurrencyNames.Count; i++)
 			{
