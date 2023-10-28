@@ -32,9 +32,9 @@ namespace CoinView.Views
 		public TopListWindow()
 		{
 			InitializeComponent();
-            SeriesCollection = new SeriesCollection();
-
             UpdateCurrencyData();
+
+            SeriesCollection = new SeriesCollection();
 		}
 
 		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -99,18 +99,13 @@ namespace CoinView.Views
 			});
 		}
 
-		private async void btnShowChart_Click(object sender, RoutedEventArgs e)
+		private void btnShowChart_Click(object sender, RoutedEventArgs e)
 		{
 			if (lvcChart.Visibility == Visibility.Hidden)
 			{
-                var chartValues = await UpdateCurrencyHistory();
 				UpdateCurrencyChart();
-				YFormatter = value => value.ToString("N2") + "$";
-				Labels = chartValues.Select(x => x.Date.ToString("d")).ToArray();
-                lvcChart.DataContext = null;
-                lvcChart.DataContext = this;
-				lvcChart.Visibility = Visibility.Visible;	
-			}
+                lvcChart.Visibility = Visibility.Visible;
+            }
 			else
 			{
                 lvcChart.Visibility = Visibility.Hidden;
@@ -128,8 +123,15 @@ namespace CoinView.Views
 			if (index > currencyRoot.Data.Count - 1)
 			{
 				index = currencyRoot.Data.Count - 1;
-			}
+                return;
+            }
+			
 			UpdateCurrencyData();
+
+			if (lvcChart.Visibility == Visibility.Visible)
+			{
+                UpdateCurrencyChart();
+            }
 		}
 
 		private void btnBackward_Click(object sender, RoutedEventArgs e)
@@ -138,9 +140,16 @@ namespace CoinView.Views
 			if (index < 0)
 			{
 				index = 0;
+				return;
 			}
+
 			UpdateCurrencyData();
-		}
+
+            if (lvcChart.Visibility == Visibility.Visible)
+            {
+                UpdateCurrencyChart();
+            }
+        }
 
 		private void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
@@ -189,33 +198,58 @@ namespace CoinView.Views
 
 		private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
 		{
-			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[index].Id}/history?interval=d1";
+			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[index].Id}/history?interval=m1";
 			ApiService apiService = new ApiService();
 			await apiService.GetCrpytoDataAsync(url, Constants.FilePathHistory);
 			currencyHistory = apiService.GetDeserializedHistory(Constants.FilePathHistory);
 
 			DateTimeOffset dateEnd = DateTimeOffset.Now;
-			DateTimeOffset dateStart = dateEnd.AddDays(-7);
+			DateTimeOffset dateStart = dateEnd.AddDays(-1);
 
 			return currencyHistory
 				.Where(x => x.Date.ToLocalTime() < dateEnd && x.Date.ToLocalTime() > dateStart)
 				.ToList();
 		}
 
-		private void UpdateCurrencyChart()
-		{
+        private async void UpdateCurrencyChart()
+        {
             SeriesCollection.Clear();
 
-            SeriesCollection = new SeriesCollection
-			{
-				new LineSeries
-				{
-					Title = currencyRoot.Data[index].Id,
-					Values = new ChartValues<decimal>(currencyHistory.Select(x=>x.PriceUsd)),
-					StrokeThickness = 3
-				}
-			};
-		}
+            var chartValues = await UpdateCurrencyHistory();
 
-	}
+            // Останню точку завжди додаємо
+            if (chartValues.Count > 0)
+            {
+                List<decimal> filteredValues = new List<decimal>
+                {
+                    chartValues[0].PriceUsd // Додаємо першу точку
+                };
+
+                // Додаємо кожну десяту точку
+                for (int i = 5; i < chartValues.Count; i += 10)
+                {
+                    filteredValues.Add(chartValues[i].PriceUsd);
+                }
+
+                SeriesCollection = new SeriesCollection
+				{
+					new LineSeries
+					{
+						Title = currencyRoot.Data[index].Id,
+						Values = new ChartValues<decimal>(filteredValues),
+						StrokeThickness = 3
+					}
+				};
+
+                YFormatter = value => value.ToString("N2") + "$";
+
+                // Створюємо масив міток для відображення на осі X
+                Labels = chartValues.Select(x => x.Date.ToString("d")).ToArray();
+
+                // Поновлюємо контекст даних графіку
+                lvcChart.DataContext = null;
+                lvcChart.DataContext = this;
+            }
+        }
+    }
 }
