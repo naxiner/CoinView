@@ -34,7 +34,9 @@ namespace CoinView.Views
 		public TopListWindow()
 		{
 			InitializeComponent();
-			UpdateCurrencyData();
+            SeriesCollection = new SeriesCollection();
+
+            UpdateCurrencyData();
 		}
 
 		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -103,16 +105,17 @@ namespace CoinView.Views
 		{
 			if (lvcChart.Visibility == Visibility.Hidden)
 			{
-				var chartValues = await UpdateCurrencyHistory();
+                var chartValues = await UpdateCurrencyHistory();
 				UpdateCurrencyChart();
 				YFormatter = value => value.ToString("N2") + "$";
 				Labels = chartValues.Select(x => x.Date.ToString("d")).ToArray();
-				DataContext = this;
+                lvcChart.DataContext = null;
+                lvcChart.DataContext = this;
 				lvcChart.Visibility = Visibility.Visible;	
 			}
 			else
 			{
-				lvcChart.Visibility = Visibility.Hidden;
+                lvcChart.Visibility = Visibility.Hidden;
 			}
 		}
 
@@ -203,7 +206,9 @@ namespace CoinView.Views
 
 		private void UpdateCurrencyChart()
 		{
-			SeriesCollection = new SeriesCollection
+            SeriesCollection.Clear();
+
+            SeriesCollection = new SeriesCollection
 			{
 				new LineSeries
 				{
