@@ -1,7 +1,11 @@
-﻿using System;
+﻿using CoinView.Models;
+using CoinView.Services;
+using CoinView.Utils;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -20,9 +24,12 @@ namespace CoinView.Views
     /// </summary>
     public partial class SearchWindow : Window
     {
+        private CurrencyRoot currencyRoot = new CurrencyRoot();
+
         public SearchWindow()
         {
             InitializeComponent();
+            UpdateCurrencyData();
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -85,6 +92,62 @@ namespace CoinView.Views
             searchWindow.Top = this.Top;
             searchWindow.Show();
             Close();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var id = SearchBy(tbSearch.Text);
+            if (id == -1)
+            {
+                MessageBox.Show($"Не знайдено жодного запису по запиту \"{tbSearch.Text}\"");
+            }
+            else
+            {
+                var topListWindow = new TopListWindow(id - 1);
+                topListWindow.Left = this.Left;
+                topListWindow.Top = this.Top;
+                topListWindow.Show();
+                Close();
+            }
+        }
+
+        int SearchBy(string searchText)
+        {
+            if (int.TryParse(searchText, out int rank) && rank >= 1 && rank <= 100)
+            {
+                // Шукати по рангу (1)
+                var findByRank = currencyRoot.Data.FirstOrDefault(u => u.Rank == rank);
+                if (findByRank != null)
+                {
+                    return findByRank.Rank;
+                }
+            }
+            else
+            {
+                // Шукати по символу (BTC)
+                var findBySymbol = currencyRoot.Data.FirstOrDefault(u => u.Symbol == searchText);
+                if (findBySymbol != null)
+                {
+                    return findBySymbol.Rank;
+                }
+
+                // Шукати по символу (Bitcoin)
+                var findByName = currencyRoot.Data.FirstOrDefault(u => u.Name == searchText);
+                if (findByName != null)
+                {
+                    return findByName.Rank;
+                }
+            }
+
+            // Не було знайдено нічого
+            return -1;
+        }
+
+        private async void UpdateCurrencyData()
+        {
+            ApiService apiService = new ApiService();
+            await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
+            currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
         }
     }
 }

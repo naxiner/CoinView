@@ -34,7 +34,7 @@ namespace CoinView.Views
 			InitializeComponent();
             UpdateCurrencyData();
 
-			if (index >= 0 && index <= 100)
+			if (index >= 0 && index <= 99)
 			{
 				currentIndex = index;
 			}
