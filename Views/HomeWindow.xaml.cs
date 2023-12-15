@@ -72,7 +72,7 @@ namespace CoinView.Views
 
 		private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
 		{
-			var topListWindow = new TopListWindow();
+			var topListWindow = new TopListWindow(0);
 			topListWindow.Left = this.Left;
 			topListWindow.Top = this.Top;
 			topListWindow.Show();

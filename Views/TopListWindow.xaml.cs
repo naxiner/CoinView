@@ -23,16 +23,25 @@ namespace CoinView.Views
 	{
 		private CurrencyRoot currencyRoot = new CurrencyRoot();
 		private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
-		private int index = 0;
+		private int currentIndex = 0;
 
 		public SeriesCollection SeriesCollection { get; set; }
 		public string[] Labels { get; set; }
 		public Func<double, string> YFormatter { get; set; }
 
-		public TopListWindow()
+		public TopListWindow(int index)
 		{
 			InitializeComponent();
             UpdateCurrencyData();
+
+			if (index >= 0 && index <= 100)
+			{
+				currentIndex = index;
+			}
+			else
+			{
+				currentIndex = 0;
+			}
 
             SeriesCollection = new SeriesCollection();
 		}
@@ -83,7 +92,7 @@ namespace CoinView.Views
 
 		private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
 		{
-			var topListWindow = new TopListWindow();
+			var topListWindow = new TopListWindow(0);
 			topListWindow.Left = this.Left;
 			topListWindow.Top = this.Top;
 			topListWindow.Show();
@@ -95,7 +104,7 @@ namespace CoinView.Views
 			Process.Start(new ProcessStartInfo
 			{
 				FileName = "cmd",
-				Arguments = $"/c start {currencyRoot.Data[index].Explorer}"
+				Arguments = $"/c start {currencyRoot.Data[currentIndex].Explorer}"
 			});
 		}
 
@@ -114,15 +123,15 @@ namespace CoinView.Views
 
 		private void btnCopy_Click(object sender, RoutedEventArgs e)
 		{
-			Clipboard.SetText(CopyByIndex(index));
+			Clipboard.SetText(CopyByIndex(currentIndex));
 		}
 
 		private void btnForward_Click(object sender, RoutedEventArgs e)
 		{
-			index += 1;
-			if (index > currencyRoot.Data.Count - 1)
+            currentIndex += 1;
+			if (currentIndex > currencyRoot.Data.Count - 1)
 			{
-				index = currencyRoot.Data.Count - 1;
+                currentIndex = currencyRoot.Data.Count - 1;
                 return;
             }
 			
@@ -136,10 +145,10 @@ namespace CoinView.Views
 
 		private void btnBackward_Click(object sender, RoutedEventArgs e)
 		{
-			index -= 1;
-			if (index < 0)
+            currentIndex -= 1;
+			if (currentIndex < 0)
 			{
-				index = 0;
+                currentIndex = 0;
 				return;
 			}
 
@@ -162,24 +171,24 @@ namespace CoinView.Views
 			await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
 			currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
 
-			lbCurrencyName.Content = currencyRoot.Data[index].Name;
-			lbCurrencySymbol.Content = currencyRoot.Data[index].Symbol;
-			lbCurrencyPrice.Content = $"${currencyRoot.Data[index].PriceUsd}";
-			lbCurrencySupply.Content = $"${currencyRoot.Data[index].Supply:0.00}";
-			lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[index].MaxSupply:0.00}";
+			lbCurrencyName.Content = currencyRoot.Data[currentIndex].Name;
+			lbCurrencySymbol.Content = currencyRoot.Data[currentIndex].Symbol;
+			lbCurrencyPrice.Content = $"${currencyRoot.Data[currentIndex].PriceUsd}";
+			lbCurrencySupply.Content = $"${currencyRoot.Data[currentIndex].Supply:0.00}";
+			lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[currentIndex].MaxSupply:0.00}";
 
-			if (currencyRoot.Data[index].ChangePercent24Hr > 0)
+			if (currencyRoot.Data[currentIndex].ChangePercent24Hr > 0)
 			{
 				lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Green);
-				lbCurrencyChangePercent.Content = $"↑ {currencyRoot.Data[index].ChangePercent24Hr}%";
+				lbCurrencyChangePercent.Content = $"↑ {currencyRoot.Data[currentIndex].ChangePercent24Hr}%";
 			}
 			else
 			{
 				lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Red);
-				lbCurrencyChangePercent.Content = $"↓ {currencyRoot.Data[index].ChangePercent24Hr}%";
+				lbCurrencyChangePercent.Content = $"↓ {currencyRoot.Data[currentIndex].ChangePercent24Hr}%";
 			}
 
-			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[index].Vwap24Hr}";
+			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[currentIndex].Vwap24Hr}";
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
 
@@ -198,7 +207,7 @@ namespace CoinView.Views
 
 		private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
 		{
-			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[index].Id}/history?interval=m1";
+			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=m1";
 			ApiService apiService = new ApiService();
 			await apiService.GetCrpytoDataAsync(url, Constants.FilePathHistory);
 			currencyHistory = apiService.GetDeserializedHistory(Constants.FilePathHistory);
@@ -235,7 +244,7 @@ namespace CoinView.Views
 				{
 					new LineSeries
 					{
-						Title = currencyRoot.Data[index].Id,
+						Title = currencyRoot.Data[currentIndex].Id,
 						Values = new ChartValues<decimal>(filteredValues),
 						StrokeThickness = 3
 					}
