@@ -99,7 +99,16 @@ namespace CoinView.Views
 			Close();
 		}
 
-		private void btnShowSource_Click(object sender, RoutedEventArgs e)
+        private void btnMenuSearch_Click(object sender, RoutedEventArgs e)
+        {
+            var searchWindow = new SearchWindow();
+            searchWindow.Left = this.Left;
+            searchWindow.Top = this.Top;
+            searchWindow.Show();
+            Close();
+        }
+
+        private void btnShowSource_Click(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo
 			{

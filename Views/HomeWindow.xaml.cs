@@ -79,7 +79,16 @@ namespace CoinView.Views
 			Close();
         }
 
-		private void btnCopy1_Click(object sender, RoutedEventArgs e)
+        private void btnMenuSearch_Click(object sender, RoutedEventArgs e)
+        {
+			var searchWindow = new SearchWindow();
+			searchWindow.Left = this.Left;
+			searchWindow.Top = this.Top;
+			searchWindow.Show();
+			Close();
+        }
+
+        private void btnCopy1_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(0));
 		}

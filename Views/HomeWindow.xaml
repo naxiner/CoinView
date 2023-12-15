@@ -60,7 +60,7 @@
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
             <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
             <Button x:Name="btnMenuTop100" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Margin="14,119,14,254" Opacity="0"/>
+            <Button x:Name="btnMenuSearch" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
             <Button x:Name="btnMenuSettings" Margin="14,171,14,202" Opacity="0"/>
         </Grid>
     </Grid>
