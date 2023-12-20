@@ -2,20 +2,11 @@
 using CoinView.Services;
 using CoinView.Utils;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CoinView.Views
 {
@@ -29,6 +20,7 @@ namespace CoinView.Views
         public SearchWindow()
         {
             InitializeComponent();
+            tbSearch.Focus();
             UpdateCurrencyData();
         }
 
@@ -96,22 +88,17 @@ namespace CoinView.Views
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
-            var id = SearchBy(tbSearch.Text);
-            if (id == -1)
+            SearchBy();
+        }
+        private void tbSearch_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
             {
-                MessageBox.Show($"Не знайдено жодного запису по запиту \"{tbSearch.Text}\"");
-            }
-            else
-            {
-                var topListWindow = new TopListWindow(id - 1);
-                topListWindow.Left = this.Left;
-                topListWindow.Top = this.Top;
-                topListWindow.Show();
-                Close();
+                SearchBy();
             }
         }
 
-        int SearchBy(string searchText)
+        private int GetSearchingId(string searchText)
         {
             if (int.TryParse(searchText, out int rank) && rank >= 1 && rank <= 100)
             {
@@ -141,6 +128,23 @@ namespace CoinView.Views
 
             // Не було знайдено нічого
             return -1;
+        }
+
+        private void SearchBy()
+        {
+            int id = GetSearchingId(tbSearch.Text);
+            if (id == -1)
+            {
+                MessageBox.Show($"Не знайдено жодного запису по запиту \"{tbSearch.Text}\"");
+            }
+            else
+            {
+                var topListWindow = new TopListWindow(id - 1);
+                topListWindow.Left = this.Left;
+                topListWindow.Top = this.Top;
+                topListWindow.Show();
+                Close();
+            }
         }
 
         private async void UpdateCurrencyData()

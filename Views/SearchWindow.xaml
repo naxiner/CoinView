@@ -14,7 +14,7 @@
         <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
 
-        <TextBox x:Name="tbSearch" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" Height="45" BorderThickness="0,0,0,0" FontSize="36" FontFamily="Jost" TextAlignment="Right" Background="{x:Null}"/>
+        <TextBox x:Name="tbSearch" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" Height="45" BorderThickness="0,0,0,0" FontSize="36" TextAlignment="Right" Background="{x:Null}" KeyDown="tbSearch_KeyDown"/>
 
         <Button x:Name="btnSearch" Opacity="0" Margin="610,391,18,20" Click="btnSearch_Click"/>
 
