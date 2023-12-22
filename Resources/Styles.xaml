@@ -20,11 +20,14 @@
             <EventTrigger RoutedEvent="Button.Click">
                 <BeginStoryboard>
                     <Storyboard>
-                        <DoubleAnimation Storyboard.TargetProperty="Opacity" To="1" Duration="0:0:0.1"/>
+                        <DoubleAnimation Storyboard.TargetProperty="Opacity"  To="1" Duration="0:0:0.1"/>
                         <DoubleAnimation Storyboard.TargetProperty="Opacity" To="0" Duration="0:0:0.1" BeginTime="0:0:0.1"/>
                     </Storyboard>
                 </BeginStoryboard>
             </EventTrigger>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Cursor" Value="Hand"/>
+            </Trigger>
         </Style.Triggers>
     </Style>
 
