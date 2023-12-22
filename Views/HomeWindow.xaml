@@ -46,6 +46,8 @@
         <Label x:Name="lbCurrencyPrice5" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="243,283,297,119" FontSize="20" FontFamily="Global User Interface"/>
         <Label x:Name="lbCurrencyChangePercent5" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="587,283,108,119" FontSize="20" FontFamily="Global User Interface"/>
 
+        <Label x:Name="lbPopupText" Content="Скопійовано в буфер обміну!" HorizontalAlignment="Right" Margin="20,349,20,64" FontSize="20" FontFamily="Global User Interface" Visibility="Collapsed"/>
+
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,392,190,21" FontSize="20" FontFamily="Global User Interface"/>
 
         <StackPanel Margin="737,87,18,119">

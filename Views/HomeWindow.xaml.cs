@@ -3,6 +3,7 @@ using CoinView.Services;
 using CoinView.Utils;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -91,29 +92,34 @@ namespace CoinView.Views
         private void btnCopy1_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(0));
-		}
+			ShowPopup();
+        }
 
 		private void btnCopy2_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(1));
+			ShowPopup();
 		}
 
 		private void btnCopy3_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(2));
-		}
+			ShowPopup();
+        }
 
-		private void btnCopy4_Click(object sender, RoutedEventArgs e)
+        private void btnCopy4_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(3));
-		}
+			ShowPopup();
+        }
 
-		private void btnCopy5_Click(object sender, RoutedEventArgs e)
+        private void btnCopy5_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(4));
-		}
+			ShowPopup();
+        }
 
-		private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
 			UpdateCurrencyData();
 		}
@@ -154,6 +160,12 @@ namespace CoinView.Views
 			lbCurrencyChangePercents.Add(lbCurrencyChangePercent4);
 			lbCurrencyChangePercents.Add(lbCurrencyChangePercent5);
 		}
+
+		private void ShowPopup()
+		{
+            lbPopupText.Visibility = Visibility;
+            Task.Delay(1200).ContinueWith(t => this.Dispatcher.Invoke(() => lbPopupText.Visibility = Visibility.Collapsed));
+        }
 
 		private async void UpdateCurrencyData()
 		{
