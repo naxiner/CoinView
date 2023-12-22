@@ -24,32 +24,32 @@
         <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
 
-        <Label x:Name="lbCurrencyName1" Content="Bitcoin" Margin="55,87,620,335" FontSize="18"/>
-        <Label x:Name="lbCurrencySymbol1" Content="BTC" Margin="55,108,620,315" FontSize="15"/>
-        <Label x:Name="lbCurrencyPrice1"  Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,87,360,315" FontSize="20"/>
-        <Label x:Name="lbCurrencyChangePercent1" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,87,70,315" FontSize="20"/>
+        <Label x:Name="lbCurrencyName1" Content="Bitcoin" Margin="55,87,620,335" FontSize="18" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySymbol1" Content="BTC" Margin="55,108,620,315" FontSize="15" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyPrice1"  Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,87,360,315" FontSize="20" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyChangePercent1" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,87,70,315" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName2" Content="Bitcoin" Margin="55,136,620,286" FontSize="18"/>
-        <Label x:Name="lbCurrencySymbol2" Content="BTC" Margin="55,157,620,266" FontSize="15"/>
-        <Label x:Name="lbCurrencyPrice2" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,136,360,266" FontSize="20"/>
-        <Label x:Name="lbCurrencyChangePercent2" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,136,70,266" FontSize="20"/>
+        <Label x:Name="lbCurrencyName2" Content="Bitcoin" Margin="55,136,620,286" FontSize="18" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySymbol2" Content="BTC" Margin="55,157,620,266" FontSize="15" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyPrice2" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,136,360,266" FontSize="20" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyChangePercent2" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,136,70,266" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName3" Content="Bitcoin" Margin="55,185,620,237" FontSize="18"/>
-        <Label x:Name="lbCurrencySymbol3" Content="BTC" Margin="55,206,620,217" FontSize="15"/>
-        <Label x:Name="lbCurrencyPrice3" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,185,360,217" FontSize="20"/>
-        <Label x:Name="lbCurrencyChangePercent3" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,185,70,217" FontSize="20"/>
+        <Label x:Name="lbCurrencyName3" Content="Bitcoin" Margin="55,185,620,237" FontSize="18" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySymbol3" Content="BTC" Margin="55,206,620,217" FontSize="15" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyPrice3" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,185,360,217" FontSize="20" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyChangePercent3" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,185,70,217" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName4" Content="Bitcoin" Margin="55,234,620,188" FontSize="18"/>
-        <Label x:Name="lbCurrencySymbol4" Content="BTC" Margin="55,255,620,168" FontSize="15"/>
-        <Label x:Name="lbCurrencyPrice4" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,234,360,168" FontSize="20"/>
-        <Label x:Name="lbCurrencyChangePercent4" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,234,70,168" FontSize="20"/>
+        <Label x:Name="lbCurrencyName4" Content="Bitcoin" Margin="55,234,620,188" FontSize="18" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySymbol4" Content="BTC" Margin="55,255,620,168" FontSize="15" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyPrice4" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,234,360,168" FontSize="20" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyChangePercent4" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,234,70,168" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName5" Content="Bitcoin" Margin="55,283,620,139" FontSize="18"/>
-        <Label x:Name="lbCurrencySymbol5" Content="BTC" Margin="55,304,620,119" FontSize="15"/>
-        <Label x:Name="lbCurrencyPrice5" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,283,360,119" FontSize="20"/>
-        <Label x:Name="lbCurrencyChangePercent5" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,283,70,119" FontSize="20"/>
+        <Label x:Name="lbCurrencyName5" Content="Bitcoin" Margin="55,283,620,139" FontSize="18" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySymbol5" Content="BTC" Margin="55,304,620,119" FontSize="15" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyPrice5" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="180,283,360,119" FontSize="20" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyChangePercent5" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="470,283,70,119" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
+        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,392,190,21" FontSize="20" FontFamily="Global User Interface"/>
 
         <StackPanel Margin="737,87,18,119">
             <Button x:Name="btnCopy1" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy1_Click"/>
