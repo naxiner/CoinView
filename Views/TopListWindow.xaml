@@ -10,10 +10,17 @@
     <Window.Background>
         <ImageBrush ImageSource="../Resources/Images/TopListWindow.png"/>
     </Window.Background>
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resources\Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
-        <Button x:Name="btnHide" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
-        <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
-        <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+        <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
+        <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
+        <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
 
         <Label x:Name="lbCurrencyName" Content="Bitcoin" Margin="19,58,18,338" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Bold" FontFamily="Global User Interface"/>
         <Label x:Name="lbCurrencySymbol" Content="BTC" Margin="19,96,18,314" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontFamily="Global User Interface"/>
@@ -33,13 +40,13 @@
 
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Button x:Name="btnShowSource" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
-        <Button x:Name="btnShowChart" Opacity="0" Margin="201,343,427,68" Click="btnShowChart_Click" />
-        <Button x:Name="btnCopy" Opacity="0" Margin="383,343,245,68" Click="btnCopy_Click" />
+        <Button x:Name="btnShowSource" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
+        <Button x:Name="btnShowChart" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="201,343,427,68" Click="btnShowChart_Click" />
+        <Button x:Name="btnCopy" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="383,343,245,68" Click="btnCopy_Click" />
 
-        <Button x:Name="btnBackward" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
-        <Button x:Name="btnForward" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
-        <Button x:Name="btnRefresh" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
+        <Button x:Name="btnBackward" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
+        <Button x:Name="btnForward" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
+        <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
         <lvc:CartesianChart x:Name="lvcChart" Visibility="Hidden" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="LightGray" VerticalAlignment="Top" Height="282" Margin="15,54,15,0">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis FontSize="12" Labels="{Binding Labels}"></lvc:Axis>
@@ -51,10 +58,10 @@
 
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
-            <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
-            <Button x:Name="btnMenuTop100" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
-            <Button x:Name="btnMenuSettings" Margin="14,171,14,202" Opacity="0"/>
+            <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
+            <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
+            <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
+            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0"/>
         </Grid>
     </Grid>
 </Window>

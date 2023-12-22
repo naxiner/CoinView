@@ -13,16 +13,13 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="..\Resources\Styles.xaml"/>
-                <!-- Додайте інші ResourceDictionary, якщо потрібно -->
             </ResourceDictionary.MergedDictionaries>
-
-            <!-- ... (інші ресурси, які ви вже маєте) ... -->
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Button x:Name="btnHide" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
-        <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
-        <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+        <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
+        <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
+        <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
 
         <Label x:Name="lbCurrencyName1" Content="Bitcoin" Margin="55,87,620,335" FontSize="18" FontFamily="Global User Interface"/>
         <Label x:Name="lbCurrencySymbol1" Content="BTC" Margin="55,108,620,315" FontSize="15" FontFamily="Global User Interface"/>
@@ -63,10 +60,10 @@
 
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
-            <Button x:Name="btnMenuHome" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
-            <Button x:Name="btnMenuTop100" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
-            <Button x:Name="btnMenuSettings" Margin="14,171,14,202" Opacity="0"/>
+            <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
+            <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
+            <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
+            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0"/>
         </Grid>
     </Grid>
 </Window>
