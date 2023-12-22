@@ -15,23 +15,23 @@
         <Button x:Name="btnClose" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
 
-        <Label x:Name="lbCurrencyName" Content="Bitcoin" Margin="19,58,18,338" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Bold"/>
-        <Label x:Name="lbCurrencySymbol" Content="BTC" Margin="19,96,18,314" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top"/>
+        <Label x:Name="lbCurrencyName" Content="Bitcoin" Margin="19,58,18,338" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Bold" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySymbol" Content="BTC" Margin="19,96,18,314" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontFamily="Global User Interface"/>
 
-        <Label Content="Ціна" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,146,400,269" FontSize="16"/>
-        <Label x:Name="lbCurrencyPrice" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="25,166,400,236" FontSize="20"/>
-        <Label Content="Зміна за 24 години" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,146,25,269" FontSize="16"/>
-        <Label x:Name="lbCurrencyChangePercent" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="400,166,20,236" FontSize="20"/>
+        <Label Content="Ціна" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,146,400,269" FontSize="16" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyPrice" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="25,166,400,236" FontSize="20" FontFamily="Global User Interface"/>
+        <Label Content="Зміна за 24 години" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,146,25,269" FontSize="16" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyChangePercent" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="400,166,20,236" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label Content="Кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,205,400,211" FontSize="16"/>
-        <Label x:Name="lbCurrencySupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="25,223,400,179" FontSize="20" />
-        <Label Content="Максимальна кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,205,26,210" FontSize="16"/>
-        <Label x:Name="lbCurrencyMaxSupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="398,223,22,179" FontSize="20"/>
+        <Label Content="Кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,205,400,211" FontSize="16" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencySupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="25,223,400,179" FontSize="20" FontFamily="Global User Interface" />
+        <Label Content="Максимальна кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,205,26,210" FontSize="16" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyMaxSupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="398,223,22,179" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,262,400,154" FontSize="16"/>
-        <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="25,279,400,123" FontSize="20"/>
+        <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,262,400,154" FontSize="16" FontFamily="Global User Interface"/>
+        <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="25,279,400,123" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20"/>
+        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20" FontFamily="Global User Interface"/>
 
         <Button x:Name="btnShowSource" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
         <Button x:Name="btnShowChart" Opacity="0" Margin="201,343,427,68" Click="btnShowChart_Click" />
