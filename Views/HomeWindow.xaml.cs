@@ -170,12 +170,12 @@ namespace CoinView.Views
 				if (currencyRoot.Data[i].ChangePercent24Hr > 0)
 				{
 					lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Green);
-					lbCurrencyChangePercents[i].Content = $"↑ {currencyRoot.Data[i].ChangePercent24Hr}%";
+					lbCurrencyChangePercents[i].Content = $"↑ {currencyRoot.Data[i].ChangePercent24Hr:F3}%";
 				}
 				else
 				{
 					lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Red);
-					lbCurrencyChangePercents[i].Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr}%";
+					lbCurrencyChangePercents[i].Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr:F3}%";
 				}
 			}
 
