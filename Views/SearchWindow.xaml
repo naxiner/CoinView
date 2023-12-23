@@ -21,7 +21,7 @@
         <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
 
-        <TextBox x:Name="tbSearch" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" Height="45" BorderThickness="0,0,0,0" FontSize="36" TextAlignment="Right" Background="{x:Null}" KeyDown="tbSearch_KeyDown" FontFamily="Global User Interface"/>
+        <TextBox x:Name="tbSearch" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" Height="45" BorderThickness="0,0,0,0" FontSize="36" Background="{x:Null}" KeyDown="tbSearch_KeyDown" FontFamily="Global User Interface"/>
 
         <Label x:Name="lbPopupText" Content="Не знайдено жодного запису!" HorizontalAlignment="Right" Margin="0,188,20,206" FontSize="30" FontFamily="Global User Interface" Visibility="Collapsed"/>
 
