@@ -37,6 +37,8 @@
         <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,262,400,154" FontSize="16" FontFamily="Global User Interface"/>
         <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="25,279,400,123" FontSize="20" FontFamily="Global User Interface"/>
 
+        <Label x:Name="lbPopupText" Content="Скопійовано в буфер обміну!" HorizontalAlignment="Right" Margin="0,284,121,128" FontSize="20" FontFamily="Global User Interface" Visibility="Collapsed"/>
+
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20" FontFamily="Global User Interface"/>
 
         <Button x:Name="btnShowSource" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />

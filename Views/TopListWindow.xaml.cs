@@ -3,8 +3,10 @@ using CoinView.Services;
 using CoinView.Utils;
 using System;
 using System.Diagnostics;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
@@ -117,6 +119,7 @@ namespace CoinView.Views
 		private void btnCopy_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(currentIndex));
+			ShowPopup();
 		}
 
 		private void btnForward_Click(object sender, RoutedEventArgs e)
@@ -187,5 +190,10 @@ namespace CoinView.Views
 			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[currentIndex].Vwap24Hr}";
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
+        private void ShowPopup()
+        {
+            lbPopupText.Visibility = Visibility;
+            Task.Delay(1200).ContinueWith(t => this.Dispatcher.Invoke(() => lbPopupText.Visibility = Visibility.Collapsed));
+        }
     }
 }
