@@ -49,7 +49,8 @@ namespace CoinView.Views
             MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
         }
 
-		private void btnHide_Click(object sender, RoutedEventArgs e)
+        #region BUTTONS
+        private void btnHide_Click(object sender, RoutedEventArgs e)
 		{
 			this.WindowState = WindowState.Minimized;
 		}
@@ -155,8 +156,9 @@ namespace CoinView.Views
 		{
 			UpdateCurrencyData();
 		}
+        #endregion
 
-		private string CopyByIndex(int index)
+        private string CopyByIndex(int index)
 		{
 			string textToCopy =
 				$"{currencyRoot.Data[index].Name} " +
@@ -195,7 +197,8 @@ namespace CoinView.Views
 			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[currentIndex].Vwap24Hr}";
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
-        private void ShowPopup()
+        
+		private void ShowPopup()
         {
             lbPopupText.Visibility = Visibility;
             Task.Delay(1200).ContinueWith(t => this.Dispatcher.Invoke(() => lbPopupText.Visibility = Visibility.Collapsed));

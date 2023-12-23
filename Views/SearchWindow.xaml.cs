@@ -38,6 +38,7 @@ namespace CoinView.Views
             MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
         }
 
+        #region BUTTONS
         private void btnHide_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -103,6 +104,7 @@ namespace CoinView.Views
                 SearchBy();
             }
         }
+        #endregion
 
         private int GetSearchingId(string searchText)
         {
