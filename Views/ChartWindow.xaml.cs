@@ -23,13 +23,15 @@ namespace CoinView.Views
         private CurrencyRoot currencyRoot = new CurrencyRoot();
         private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
         private int currentIndex;
+        private int previousWindow;
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
         public Func<double, string> YFormatter { get; set; }
 
-        public ChartWindow(int index)
+        public ChartWindow(int index, int previousWindow)
         {
             currentIndex = index;
+            this.previousWindow = previousWindow;
             SeriesCollection = new SeriesCollection();
             InitializeComponent();
             UpdateCurrencyData();
@@ -44,7 +46,6 @@ namespace CoinView.Views
         }
 
         #region BUTTONS
-
         private void btnHide_Click(object sender, RoutedEventArgs e)
         {
             this.WindowState = WindowState.Minimized;
@@ -97,6 +98,35 @@ namespace CoinView.Views
             searchWindow.Top = this.Top;
             searchWindow.Show();
             Close();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCurrencyData();
+            UpdateCurrencyChart();
+        }
+
+        private void btnReturn_Click(object sender, RoutedEventArgs e)
+        {
+            switch (previousWindow)
+            {
+                case 1:
+                    var homeWindow = new HomeWindow();
+                    homeWindow.Left = this.Left;
+                    homeWindow.Top = this.Top;
+                    homeWindow.Show();
+                    Close();
+                    break;
+                case 2:
+                    var topListWindow = new TopListWindow(currentIndex);
+                    topListWindow.Left = this.Left;
+                    topListWindow.Top = this.Top;
+                    topListWindow.Show();
+                    Close();
+                    break;
+                default:
+                    break;
+            }
         }
         #endregion
 

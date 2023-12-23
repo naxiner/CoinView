@@ -1,13 +1,8 @@
 ﻿using CoinView.Models;
 using CoinView.Services;
 using CoinView.Utils;
-using LiveCharts;
-using LiveCharts.Wpf;
 using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -112,7 +107,7 @@ namespace CoinView.Views
 
 		private void btnShowChart_Click(object sender, RoutedEventArgs e)
 		{
-			var chartWindow = new ChartWindow(currentIndex);
+			var chartWindow = new ChartWindow(currentIndex, 2);
             chartWindow.Left = this.Left;
             chartWindow.Top = this.Top;
             chartWindow.Show();

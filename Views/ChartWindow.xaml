@@ -31,6 +31,9 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
+        <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Margin="610,343,19,68" Click="btnRefresh_Click"/>
+        <Button x:Name="btnReturn" Style="{StaticResource ButtonStyle}" Margin="610,391,18,20" Click="btnReturn_Click"/>
+
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
             <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>

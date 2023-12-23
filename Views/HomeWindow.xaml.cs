@@ -91,27 +91,27 @@ namespace CoinView.Views
 
         private void btnChart1_Click(object sender, RoutedEventArgs e)
         {
-			// відкриття графіку
+			OpenChartWindow(0);
         }
 
         private void btnChart2_Click(object sender, RoutedEventArgs e)
         {
-            // відкриття графіку
+            OpenChartWindow(1);
         }
 
         private void btnChart3_Click(object sender, RoutedEventArgs e)
         {
-            // відкриття графіку
+            OpenChartWindow(2);
         }
 
         private void btnChart4_Click(object sender, RoutedEventArgs e)
         {
-            // відкриття графіку
+            OpenChartWindow(3);
         }
 
         private void btnChart5_Click(object sender, RoutedEventArgs e)
         {
-            // відкриття графіку
+            OpenChartWindow(4);
         }
 
         private void btnCopy1_Click(object sender, RoutedEventArgs e)
@@ -218,5 +218,14 @@ namespace CoinView.Views
 
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
+
+		private void OpenChartWindow(int index)
+		{
+            var chartWindow = new ChartWindow(index, 1);
+            chartWindow.Left = this.Left;
+            chartWindow.Top = this.Top;
+            chartWindow.Show();
+            Close();
+        }
     }
 }
