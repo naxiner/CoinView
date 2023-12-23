@@ -118,14 +118,16 @@ namespace CoinView.Views
             else
             {
                 // Шукати по символу (BTC)
-                var findBySymbol = currencyRoot.Data.FirstOrDefault(u => u.Symbol == searchText);
+                var findBySymbol = currencyRoot.Data.FirstOrDefault(u => string
+                    .Equals(u.Symbol, searchText, StringComparison.OrdinalIgnoreCase));
                 if (findBySymbol != null)
                 {
                     return findBySymbol.Rank;
                 }
 
                 // Шукати по символу (Bitcoin)
-                var findByName = currencyRoot.Data.FirstOrDefault(u => u.Name == searchText);
+                var findByName = currencyRoot.Data.FirstOrDefault(u => string
+                    .Equals(u.Name, searchText, StringComparison.OrdinalIgnoreCase));
                 if (findByName != null)
                 {
                     return findByName.Rank;
