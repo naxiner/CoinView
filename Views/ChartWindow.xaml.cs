@@ -43,6 +43,11 @@ namespace CoinView.Views
             {
                 DragMove();
             }
+
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.To = 0;
+            animation.Duration = TimeSpan.FromSeconds(0.2);
+            MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
         }
 
         #region BUTTONS
