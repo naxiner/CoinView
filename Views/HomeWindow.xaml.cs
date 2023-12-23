@@ -89,6 +89,31 @@ namespace CoinView.Views
 			Close();
         }
 
+        private void btnChart1_Click(object sender, RoutedEventArgs e)
+        {
+			// відкриття графіку
+        }
+
+        private void btnChart2_Click(object sender, RoutedEventArgs e)
+        {
+            // відкриття графіку
+        }
+
+        private void btnChart3_Click(object sender, RoutedEventArgs e)
+        {
+            // відкриття графіку
+        }
+
+        private void btnChart4_Click(object sender, RoutedEventArgs e)
+        {
+            // відкриття графіку
+        }
+
+        private void btnChart5_Click(object sender, RoutedEventArgs e)
+        {
+            // відкриття графіку
+        }
+
         private void btnCopy1_Click(object sender, RoutedEventArgs e)
 		{
 			Clipboard.SetText(CopyByIndex(0));

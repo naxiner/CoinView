@@ -50,7 +50,15 @@
 
         <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,392,190,21" FontSize="20" FontFamily="Global User Interface"/>
 
-        <StackPanel Margin="737,87,18,119">
+        <StackPanel Margin="693,87,63,119">
+            <Button x:Name="btnChart1" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart1_Click"/>
+            <Button x:Name="btnChart2" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart2_Click"/>
+            <Button x:Name="btnChart3" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart3_Click"/>
+            <Button x:Name="btnChart4" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart4_Click"/>
+            <Button x:Name="btnChart5" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart5_Click"/>
+        </StackPanel>
+
+        <StackPanel Margin="738,87,19,119">
             <Button x:Name="btnCopy1" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy1_Click"/>
             <Button x:Name="btnCopy2" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy2_Click"/>
             <Button x:Name="btnCopy3" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy3_Click"/>

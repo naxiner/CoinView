@@ -22,12 +22,7 @@ namespace CoinView.Views
 	public partial class TopListWindow : Window
 	{
 		private CurrencyRoot currencyRoot = new CurrencyRoot();
-		private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
 		private int currentIndex = 0;
-
-		public SeriesCollection SeriesCollection { get; set; }
-		public string[] Labels { get; set; }
-		public Func<double, string> YFormatter { get; set; }
 
 		public TopListWindow(int index)
 		{
@@ -42,8 +37,6 @@ namespace CoinView.Views
 			{
 				currentIndex = 0;
 			}
-
-            SeriesCollection = new SeriesCollection();
 		}
 
 		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -119,16 +112,12 @@ namespace CoinView.Views
 
 		private void btnShowChart_Click(object sender, RoutedEventArgs e)
 		{
-			if (lvcChart.Visibility == Visibility.Hidden)
-			{
-				UpdateCurrencyChart();
-                lvcChart.Visibility = Visibility.Visible;
-            }
-			else
-			{
-                lvcChart.Visibility = Visibility.Hidden;
-			}
-		}
+			var chartWindow = new ChartWindow(currentIndex);
+            chartWindow.Left = this.Left;
+            chartWindow.Top = this.Top;
+            chartWindow.Show();
+            Close();
+        }
 
 		private void btnCopy_Click(object sender, RoutedEventArgs e)
 		{
@@ -145,11 +134,6 @@ namespace CoinView.Views
             }
 			
 			UpdateCurrencyData();
-
-			if (lvcChart.Visibility == Visibility.Visible)
-			{
-                UpdateCurrencyChart();
-            }
 		}
 
 		private void btnBackward_Click(object sender, RoutedEventArgs e)
@@ -162,16 +146,24 @@ namespace CoinView.Views
 			}
 
 			UpdateCurrencyData();
-
-            if (lvcChart.Visibility == Visibility.Visible)
-            {
-                UpdateCurrencyChart();
-            }
         }
 
 		private void btnRefresh_Click(object sender, RoutedEventArgs e)
 		{
 			UpdateCurrencyData();
+		}
+
+		private string CopyByIndex(int index)
+		{
+			string textToCopy =
+				$"{currencyRoot.Data[index].Name} " +
+				$"{currencyRoot.Data[index].Symbol} " +
+				$"${currencyRoot.Data[index].PriceUsd} " +
+				$"{currencyRoot.Data[index].ChangePercent24Hr}% " +
+				$"${currencyRoot.Data[index].Supply:0.00} " +
+				$"${currencyRoot.Data[index].MaxSupply:0.00} " +
+				$"${currencyRoot.Data[index].Vwap24Hr} ";
+			return textToCopy;
 		}
 
 		private async void UpdateCurrencyData()
@@ -200,74 +192,5 @@ namespace CoinView.Views
 			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[currentIndex].Vwap24Hr}";
 			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
 		}
-
-		private string CopyByIndex(int index)
-		{
-			string textToCopy =
-				$"{currencyRoot.Data[index].Name} " +
-				$"{currencyRoot.Data[index].Symbol} " +
-				$"${currencyRoot.Data[index].PriceUsd} " +
-				$"{currencyRoot.Data[index].ChangePercent24Hr}% " +
-				$"${currencyRoot.Data[index].Supply:0.00} " +
-				$"${currencyRoot.Data[index].MaxSupply:0.00} " +
-				$"${currencyRoot.Data[index].Vwap24Hr} ";
-			return textToCopy;
-		}
-
-		private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
-		{
-			string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=m1";
-			ApiService apiService = new ApiService();
-			await apiService.GetCrpytoDataAsync(url, Constants.FilePathHistory);
-			currencyHistory = apiService.GetDeserializedHistory(Constants.FilePathHistory);
-
-			DateTimeOffset dateEnd = DateTimeOffset.Now;
-			DateTimeOffset dateStart = dateEnd.AddDays(-1);
-
-			return currencyHistory
-				.Where(x => x.Date.ToLocalTime() < dateEnd && x.Date.ToLocalTime() > dateStart)
-				.ToList();
-		}
-
-        private async void UpdateCurrencyChart()
-        {
-            SeriesCollection.Clear();
-
-            var chartValues = await UpdateCurrencyHistory();
-
-            // Останню точку завжди додаємо
-            if (chartValues.Count > 0)
-            {
-                List<decimal> filteredValues = new List<decimal>
-                {
-                    chartValues[0].PriceUsd // Додаємо першу точку
-                };
-
-                // Додаємо кожну десяту точку
-                for (int i = 5; i < chartValues.Count; i += 10)
-                {
-                    filteredValues.Add(chartValues[i].PriceUsd);
-                }
-
-                SeriesCollection = new SeriesCollection
-				{
-					new LineSeries
-					{
-						Title = currencyRoot.Data[currentIndex].Id,
-						Values = new ChartValues<decimal>(filteredValues),
-						StrokeThickness = 3
-					}
-				};
-
-                YFormatter = value => value.ToString("N2") + "$";
-
-                // Створюємо масив міток для відображення на осі X
-                Labels = chartValues.Select(x => x.Date.ToString("d")).ToArray();
-
-                // Поновлюємо контекст даних графіку
-                lvcChart.DataContext = null;
-                lvcChart.DataContext = this;
-            }
-        }
     }
 }

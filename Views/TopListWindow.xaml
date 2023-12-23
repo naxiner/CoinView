@@ -3,7 +3,6 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
         WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown">
@@ -47,14 +46,6 @@
         <Button x:Name="btnBackward" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
         <Button x:Name="btnForward" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
         <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
-        <lvc:CartesianChart x:Name="lvcChart" Visibility="Hidden" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="LightGray" VerticalAlignment="Top" Height="282" Margin="15,54,15,0">
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis FontSize="12" Labels="{Binding Labels}"></lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis FontSize="12" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>
 
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
             <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
