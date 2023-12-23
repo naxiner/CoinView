@@ -23,6 +23,8 @@
 
         <TextBox x:Name="tbSearch" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" Height="45" BorderThickness="0,0,0,0" FontSize="36" TextAlignment="Right" Background="{x:Null}" KeyDown="tbSearch_KeyDown" FontFamily="Global User Interface"/>
 
+        <Label x:Name="lbPopupText" Content="Не знайдено жодного запису!" HorizontalAlignment="Right" Margin="0,188,20,206" FontSize="30" FontFamily="Global User Interface" Visibility="Collapsed"/>
+
         <Button x:Name="btnSearch" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,391,18,20" Click="btnSearch_Click"/>
 
         <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">

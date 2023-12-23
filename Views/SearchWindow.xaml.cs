@@ -3,6 +3,7 @@ using CoinView.Services;
 using CoinView.Utils;
 using System;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
@@ -135,7 +136,7 @@ namespace CoinView.Views
             int id = GetSearchingId(tbSearch.Text);
             if (id == -1)
             {
-                MessageBox.Show($"Не знайдено жодного запису по запиту \"{tbSearch.Text}\"");
+                ShowPopup();
             }
             else
             {
@@ -152,6 +153,12 @@ namespace CoinView.Views
             ApiService apiService = new ApiService();
             await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
             currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
+        }
+
+        private void ShowPopup()
+        {
+            lbPopupText.Visibility = Visibility;
+            Task.Delay(1200).ContinueWith(t => this.Dispatcher.Invoke(() => lbPopupText.Visibility = Visibility.Collapsed));
         }
     }
 }
