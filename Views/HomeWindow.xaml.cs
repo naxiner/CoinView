@@ -95,6 +95,15 @@ namespace CoinView.Views
 			Close();
         }
 
+        private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow();
+            settingsWindow.Left = this.Left;
+            settingsWindow.Top = this.Top;
+            settingsWindow.Show();
+            Close();
+        }
+
         private void btnChart1_Click(object sender, RoutedEventArgs e)
         {
 			OpenChartWindow(0);

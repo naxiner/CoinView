@@ -73,7 +73,7 @@
             <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
             <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
             <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
-            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0"/>
+            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0" Click="btnMenuSettings_Click"/>
         </Grid>
     </Grid>
 </Window>
