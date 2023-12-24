@@ -19,9 +19,11 @@ namespace CoinView.Views
     /// </summary>
     public partial class ChartWindow : Window
     {
+        ApiService apiService = new ApiService();
         private CurrencyRoot currencyRoot = new CurrencyRoot();
         private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
         private int currentIndex;
+        private int currentDays;
         private int previousWindow;
         public SeriesCollection SeriesCollection { get; set; }
         public string[] Labels { get; set; }
@@ -30,6 +32,7 @@ namespace CoinView.Views
         public ChartWindow(int index, int previousWindow)
         {
             currentIndex = index;
+            currentDays = 1;
             this.previousWindow = previousWindow;
             SeriesCollection = new SeriesCollection();
             InitializeComponent();
@@ -104,6 +107,24 @@ namespace CoinView.Views
             Close();
         }
 
+        private void btn1day_Click(object sender, RoutedEventArgs e)
+        {
+            currentDays = 1;
+            UpdateCurrencyChart();
+        }
+
+        private void btn7days_Click(object sender, RoutedEventArgs e)
+        {
+            currentDays = 7;
+            UpdateCurrencyChart();
+        }
+
+        private void btn1month_Click(object sender, RoutedEventArgs e)
+        {
+            currentDays = 30;
+            UpdateCurrencyChart();
+        }
+
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             UpdateCurrencyData();
@@ -137,7 +158,6 @@ namespace CoinView.Views
         #region CHART
         private async void UpdateCurrencyData()
         {
-            ApiService apiService = new ApiService();
             await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
             currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
             UpdateCurrencyChart();
@@ -145,13 +165,24 @@ namespace CoinView.Views
         
         private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
         {
-            string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=d1";
-            ApiService apiService = new ApiService();
+            string url = "";
+            if (currentDays == 1)
+            {
+                url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=m15";
+            }
+            else if (currentDays == 7)
+            {
+                url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=h2";
+            }
+            else if (currentDays == 30)
+            {
+                url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=h12";
+            }
             await apiService.GetCrpytoDataAsync(url, Constants.FilePathHistory);
             currencyHistory = apiService.GetDeserializedHistory(Constants.FilePathHistory);
 
             DateTimeOffset dateEnd = DateTime.Now.Date;
-            DateTimeOffset dateStart = dateEnd.AddDays(-30);
+            DateTimeOffset dateStart = dateEnd.AddDays(-currentDays);
 
             return currencyHistory
                 .Where(x => x.Date < dateEnd && x.Date > dateStart)
@@ -184,20 +215,5 @@ namespace CoinView.Views
             lvcChart.DataContext = this;
         }
         #endregion
-
-        private void btn1day_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn7days_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
-
-        private void btn1month_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
