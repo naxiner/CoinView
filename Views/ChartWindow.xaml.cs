@@ -141,21 +141,20 @@ namespace CoinView.Views
             await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
             currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
             UpdateCurrencyChart();
-
         }
         
         private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
         {
-            string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=m1";
+            string url = $"http://api.coincap.io/v2/assets/{currencyRoot.Data[currentIndex].Id}/history?interval=d1";
             ApiService apiService = new ApiService();
             await apiService.GetCrpytoDataAsync(url, Constants.FilePathHistory);
             currencyHistory = apiService.GetDeserializedHistory(Constants.FilePathHistory);
 
-            DateTimeOffset dateEnd = DateTimeOffset.Now;
-            DateTimeOffset dateStart = dateEnd.AddDays(-1);
+            DateTimeOffset dateEnd = DateTime.Now.Date;
+            DateTimeOffset dateStart = dateEnd.AddDays(-30);
 
             return currencyHistory
-                .Where(x => x.Date.ToLocalTime() < dateEnd && x.Date.ToLocalTime() > dateStart)
+                .Where(x => x.Date < dateEnd && x.Date > dateStart)
                 .ToList();
         }
 
@@ -165,40 +164,40 @@ namespace CoinView.Views
 
             var chartValues = await UpdateCurrencyHistory();
 
-            // Останню точку завжди додаємо
-            if (chartValues.Count > 0)
+            SeriesCollection = new SeriesCollection
             {
-                List<decimal> filteredValues = new List<decimal>
+                new LineSeries
                 {
-                    chartValues[0].PriceUsd // Додаємо першу точку
-                };
-
-                // Додаємо кожну десяту точку
-                for (int i = 5; i < chartValues.Count; i += 10)
-                {
-                    filteredValues.Add(chartValues[i].PriceUsd);
+                    Title = currencyRoot.Data[currentIndex].Id,
+                    Values = new ChartValues<decimal>(chartValues.Select(x => x.PriceUsd)),
+                    StrokeThickness = 3
                 }
+            };
 
-                SeriesCollection = new SeriesCollection
-                {
-                    new LineSeries
-                    {
-                        Title = currencyRoot.Data[currentIndex].Id,
-                        Values = new ChartValues<decimal>(filteredValues),
-                        StrokeThickness = 3
-                    }
-                };
+            YFormatter = value => value.ToString("N2") + "$";
 
-                YFormatter = value => value.ToString("N2") + "$";
+            // Створюємо масив міток для відображення на осі X
+            Labels = chartValues.Select(x => x.Date.ToString("f")).ToArray();
 
-                // Створюємо масив міток для відображення на осі X
-                Labels = chartValues.Select(x => x.Date.ToString("d")).ToArray();
-
-                // Поновлюємо контекст даних графіку
-                lvcChart.DataContext = null;
-                lvcChart.DataContext = this;
-            }
+            // Поновлюємо контекст даних графіку
+            lvcChart.DataContext = null;
+            lvcChart.DataContext = this;
         }
         #endregion
+
+        private void btn1day_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn7days_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btn1month_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

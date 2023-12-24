@@ -31,6 +31,10 @@
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
 
+        <Button x:Name="btn1day" Style="{StaticResource ButtonStyle}" Margin="18,343,722,68" Click="btn1day_Click"/>
+        <Button x:Name="btn7days" Style="{StaticResource ButtonStyle}" Margin="88,343,652,68" Click="btn7days_Click"/>
+        <Button x:Name="btn1month" Style="{StaticResource ButtonStyle}" Margin="158,343,582,68" Click="btn1month_Click"/>
+
         <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Margin="610,343,19,68" Click="btnRefresh_Click"/>
         <Button x:Name="btnReturn" Style="{StaticResource ButtonStyle}" Margin="610,391,18,20" Click="btnReturn_Click"/>
 
