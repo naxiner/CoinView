@@ -136,9 +136,9 @@ namespace CoinView.Views
                 currentIndex = currencyRoot.Data.Count - 1;
                 return;
             }
-			
-			UpdateCurrencyData();
-		}
+
+            UpdateUI();
+        }
 
 		private void btnBackward_Click(object sender, RoutedEventArgs e)
 		{
@@ -149,7 +149,7 @@ namespace CoinView.Views
 				return;
 			}
 
-			UpdateCurrencyData();
+			UpdateUI();
         }
 
 		private void btnRefresh_Click(object sender, RoutedEventArgs e)
@@ -177,27 +177,32 @@ namespace CoinView.Views
 			await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
 			currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
 
-			lbCurrencyName.Content = currencyRoot.Data[currentIndex].Name;
-			lbCurrencySymbol.Content = currencyRoot.Data[currentIndex].Symbol;
-			lbCurrencyPrice.Content = $"${currencyRoot.Data[currentIndex].PriceUsd}";
-			lbCurrencySupply.Content = $"${currencyRoot.Data[currentIndex].Supply:0.00}";
-			lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[currentIndex].MaxSupply:0.00}";
-
-			if (currencyRoot.Data[currentIndex].ChangePercent24Hr > 0)
-			{
-				lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Green);
-				lbCurrencyChangePercent.Content = $"↑ {currencyRoot.Data[currentIndex].ChangePercent24Hr}%";
-			}
-			else
-			{
-				lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Red);
-				lbCurrencyChangePercent.Content = $"↓ {currencyRoot.Data[currentIndex].ChangePercent24Hr}%";
-			}
-
-			lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[currentIndex].Vwap24Hr}";
-			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
+			UpdateUI();
 		}
         
+		private void UpdateUI()
+		{
+            lbCurrencyName.Content = currencyRoot.Data[currentIndex].Name;
+            lbCurrencySymbol.Content = currencyRoot.Data[currentIndex].Symbol;
+            lbCurrencyPrice.Content = $"${currencyRoot.Data[currentIndex].PriceUsd}";
+            lbCurrencySupply.Content = $"${currencyRoot.Data[currentIndex].Supply:0.00}";
+            lbCurrencyMaxSupply.Content = $"${currencyRoot.Data[currentIndex].MaxSupply:0.00}";
+
+            if (currencyRoot.Data[currentIndex].ChangePercent24Hr > 0)
+            {
+                lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Green);
+                lbCurrencyChangePercent.Content = $"↑ {currencyRoot.Data[currentIndex].ChangePercent24Hr}%";
+            }
+            else
+            {
+                lbCurrencyChangePercent.Foreground = new SolidColorBrush(Colors.Red);
+                lbCurrencyChangePercent.Content = $"↓ {currencyRoot.Data[currentIndex].ChangePercent24Hr}%";
+            }
+
+            lbCurrencyVwap24Hr.Content = $"${currencyRoot.Data[currentIndex].Vwap24Hr}";
+            lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
+        }
+
 		private void ShowPopup()
         {
             lbPopupText.Visibility = Visibility;
