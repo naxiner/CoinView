@@ -21,7 +21,7 @@
         <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
         <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
         <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
-
+        
         <lvc:CartesianChart x:Name="lvcChart" Visibility="Visible" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="LightGray" VerticalAlignment="Top" Height="287" Margin="10,49,10,0">
             <lvc:CartesianChart.AxisX>
                 <lvc:Axis FontSize="12" Labels="{Binding Labels}"></lvc:Axis>
@@ -30,6 +30,8 @@
                 <lvc:Axis FontSize="12" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
             </lvc:CartesianChart.AxisY>
         </lvc:CartesianChart>
+
+        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,392,190,21" FontSize="20" FontFamily="Global User Interface"/>
 
         <Button x:Name="btn1day" Style="{StaticResource ButtonStyle}" Margin="18,343,722,68" Click="btn1day_Click"/>
         <Button x:Name="btn7days" Style="{StaticResource ButtonStyle}" Margin="88,343,652,68" Click="btn7days_Click"/>

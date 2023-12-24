@@ -160,6 +160,7 @@ namespace CoinView.Views
         {
             await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
             currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
+            lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
             UpdateCurrencyChart();
         }
         
