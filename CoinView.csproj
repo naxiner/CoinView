@@ -11,8 +11,9 @@
     <None Remove="Resources\Fonts\Jost-Bold.ttf" />
     <None Remove="Resources\Fonts\Jost-Medium.ttf" />
     <None Remove="Resources\Fonts\Jost-Regular.ttf" />
+    <None Remove="Resources\Images\chartIcon.png" />
     <None Remove="Resources\Images\ChartWindow.png" />
-    <None Remove="Resources\Images\HomeWindow.png" />
+    <None Remove="Resources\Images\copyIcon.png" />
     <None Remove="Resources\Images\MenuTab.png" />
     <None Remove="Resources\Images\SearchWindow.png" />
     <None Remove="Resources\Images\TopListWindow.png" />
@@ -28,8 +29,9 @@
     <Resource Include="Resources\Fonts\Jost-Bold.ttf" />
     <Resource Include="Resources\Fonts\Jost-Medium.ttf" />
     <Resource Include="Resources\Fonts\Jost-Regular.ttf" />
+    <Resource Include="Resources\Images\chartIcon.png" />
     <Resource Include="Resources\Images\ChartWindow.png" />
-    <Resource Include="Resources\Images\HomeWindow.png" />
+    <Resource Include="Resources\Images\copyIcon.png" />
     <Resource Include="Resources\Images\MenuTab.png" />
     <Resource Include="Resources\Images\SearchWindow.png" />
     <Resource Include="Resources\Images\TopListWindow.png" />

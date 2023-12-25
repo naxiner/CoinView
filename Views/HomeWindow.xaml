@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
         WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-    <Window.Background>
-        <ImageBrush ImageSource="../Resources/Images/HomeWindow.png"/>
-    </Window.Background>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,63 +14,155 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
-        <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
-        <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+        <StackPanel>
+            <!--Верхня панель-->
+            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="ГОЛОВНА" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+                <!--Кнопка меню-->
+                <Button x:Name="btnMenu" BorderBrush="#4B4B4B" Background="#696969" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="18">
+                            <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="9" X2="17" Y2="9" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка приховати-->
+                <Button x:Name="btnHide" BorderBrush="#4B4B4B" Background="#696969" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка закрити-->
+                <Button x:Name="btnClose" BorderBrush="#4B4B4B" Background="#696969" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="17" X2="17" Y2="0" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <!--Вікно програми-->
+            <Grid Height="411" Background="#D0D0D0">
+                <Grid Margin="8" Background="#F1F1F1">
+                    <Label Content="Топ 5 криптовалют" FontSize="22" HorizontalAlignment="Center" FontFamily="Dubai" Margin="0,0,0,355"/>
+                    <Border Margin="10, 40" VerticalAlignment="Top" BorderBrush="Black" Height="245" BorderThickness="1" CornerRadius="30">
+                        <Grid>
+                            <Label Content="1." Margin="6,3,731,192" FontSize="20" FontFamily="Dubai"/>
+                            <Label Content="2." Margin="6,52,731,143" FontSize="20" FontFamily="Dubai"/>
+                            <Label Content="3." Margin="6,101,731,94" FontSize="20" FontFamily="Dubai"/>
+                            <Label Content="4." Margin="6,150,731,45" FontSize="20" FontFamily="Dubai"/>
+                            <Label Content="5." Margin="6,199,731,-3" FontSize="20" FontFamily="Dubai"/>
 
-        <Label x:Name="lbCurrencyName1" Content="Bitcoin" Margin="55,87,620,335" FontSize="18" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySymbol1" Content="BTC" Margin="55,108,620,315" FontSize="15" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyPrice1"  Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="243,87,297,315" FontSize="20" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyChangePercent1" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="587,87,108,315" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyName1" Content="Bitcoin" FontSize="18" FontFamily="Global User Interface" Margin="36,0,536,211" FontWeight="Medium" />
+                            <Label x:Name="lbCurrencySymbol1" Content="BTC" Margin="36,22,536,195" FontSize="15" FontFamily="Global User Interface" FontWeight="Medium"/>
+                            <Label x:Name="lbCurrencyPrice1" Content="$11111111.1111111111111" Margin="226,0,190,195" VerticalContentAlignment="Center"  FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyChangePercent1" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="572,0,90,195" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName2" Content="Bitcoin" Margin="55,136,620,286" FontSize="18" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySymbol2" Content="BTC" Margin="55,157,620,266" FontSize="15" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyPrice2" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="243,136,297,266" FontSize="20" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyChangePercent2" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="587,136,108,266" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyName2" Content="Bitcoin" FontSize="18" FontFamily="Global User Interface" Margin="36,50,536,161" FontWeight="Medium" />
+                            <Label x:Name="lbCurrencySymbol2" Content="BTC" Margin="36,72,536,145" FontSize="15" FontFamily="Global User Interface" FontWeight="Medium"/>
+                            <Label x:Name="lbCurrencyPrice2" Content="$11111111.1111111111111" Margin="226,50,190,145" VerticalContentAlignment="Center"  FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyChangePercent2" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="572,50,90,145" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName3" Content="Bitcoin" Margin="55,185,620,237" FontSize="18" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySymbol3" Content="BTC" Margin="55,206,620,217" FontSize="15" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyPrice3" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="243,185,297,217" FontSize="20" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyChangePercent3" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="587,185,108,217" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyName3" Content="Bitcoin" FontSize="18" FontFamily="Global User Interface" Margin="36,99,536,112" FontWeight="Medium" />
+                            <Label x:Name="lbCurrencySymbol3" Content="BTC" Margin="36,121,536,96" FontSize="15" FontFamily="Global User Interface" FontWeight="Medium"/>
+                            <Label x:Name="lbCurrencyPrice3" Content="$11111111.1111111111111" Margin="226,99,190,96" VerticalContentAlignment="Center"  FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyChangePercent3" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="572,99,90,96" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName4" Content="Bitcoin" Margin="55,234,620,188" FontSize="18" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySymbol4" Content="BTC" Margin="55,255,620,168" FontSize="15" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyPrice4" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="243,234,297,168" FontSize="20" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyChangePercent4" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="587,234,108,168" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyName4" Content="Bitcoin" FontSize="18" FontFamily="Global User Interface" Margin="36,148,536,63" FontWeight="Medium" />
+                            <Label x:Name="lbCurrencySymbol4" Content="BTC" Margin="36,170,536,47" FontSize="15" FontFamily="Global User Interface" FontWeight="Medium"/>
+                            <Label x:Name="lbCurrencyPrice4" Content="$11111111.1111111111111" Margin="226,148,190,47" VerticalContentAlignment="Center"  FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyChangePercent4" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="572,148,90,47" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbCurrencyName5" Content="Bitcoin" Margin="55,283,620,139" FontSize="18" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySymbol5" Content="BTC" Margin="55,304,620,119" FontSize="15" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyPrice5" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="243,283,297,119" FontSize="20" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyChangePercent5" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="587,283,108,119" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyName5" Content="Bitcoin" FontSize="18" FontFamily="Global User Interface" Margin="36,197,536,14" FontWeight="Medium" />
+                            <Label x:Name="lbCurrencySymbol5" Content="BTC" Margin="36,219,536,-2" FontSize="15" FontFamily="Global User Interface" FontWeight="Medium"/>
+                            <Label x:Name="lbCurrencyPrice5" Content="$11111111.1111111111111" Margin="226,197,190,-2" VerticalContentAlignment="Center"  FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbCurrencyChangePercent5" Content="↑ 1,111%" VerticalContentAlignment="Center" Margin="572,197,90,-2" FontSize="20" FontFamily="Global User Interface"/>
 
-        <Label x:Name="lbPopupText" Content="Скопійовано в буфер обміну!" HorizontalAlignment="Right" Margin="20,349,20,64" FontSize="20" FontFamily="Global User Interface" Visibility="Collapsed"/>
+                            <Line X1="717" Y1="0" X2="717" Y2="246" Stroke="Black" StrokeThickness="1"/>
+                            <Line X1="672" Y1="0" X2="672" Y2="246" Stroke="Black" StrokeThickness="1"/>
+                            <Line X1="0" Y1="49" X2="762" Y2="49" Stroke="Black" StrokeThickness="1"/>
+                            <Line X1="0" Y1="98" X2="762" Y2="98" Stroke="Black" StrokeThickness="1"/>
+                            <Line X1="0" Y1="147" X2="762" Y2="147" Stroke="Black" StrokeThickness="1"/>
+                            <Line X1="0" Y1="196" X2="762" Y2="196" Stroke="Black" StrokeThickness="1"/>
 
-        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,392,190,21" FontSize="20" FontFamily="Global User Interface"/>
+                            <StackPanel Margin="672,0,45,0">
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnChart1_Click">
+                                    <Image Source="../Resources/Images/chartIcon.png" Height="27" Width="27"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnChart2_Click">
+                                    <Image Source="../Resources/Images/chartIcon.png" Height="27" Width="27"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnChart3_Click">
+                                    <Image Source="../Resources/Images/chartIcon.png" Height="27" Width="27"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnChart4_Click">
+                                    <Image Source="../Resources/Images/chartIcon.png" Height="27" Width="27"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnChart5_Click">
+                                    <Image Source="../Resources/Images/chartIcon.png" Height="27" Width="27"/>
+                                </Button>
+                            </StackPanel>
 
-        <StackPanel Margin="693,87,63,119">
-            <Button x:Name="btnChart1" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart1_Click"/>
-            <Button x:Name="btnChart2" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart2_Click"/>
-            <Button x:Name="btnChart3" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart3_Click"/>
-            <Button x:Name="btnChart4" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart4_Click"/>
-            <Button x:Name="btnChart5" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnChart5_Click"/>
+                            <StackPanel Margin="718,0,0,0">
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnCopy1_Click">
+                                    <Image Source="../Resources/Images/copyIcon.png" Height="21" Width="21"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnCopy2_Click">
+                                    <Image Source="../Resources/Images/copyIcon.png" Height="21" Width="21"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnCopy3_Click">
+                                    <Image Source="../Resources/Images/copyIcon.png" Height="21" Width="21"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnCopy4_Click">
+                                    <Image Source="../Resources/Images/copyIcon.png" Height="21" Width="21"/>
+                                </Button>
+                                <Button Style="{StaticResource ButtonImage}" Height="49" Click="btnCopy5_Click">
+                                    <Image Source="../Resources/Images/copyIcon.png" Height="21" Width="21"/>
+                                </Button>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+
+                    <Label x:Name="lbPopupText" Content="Скопійовано в буфер обміну!" HorizontalAlignment="Right" FontSize="20" FontFamily="Dubai" Visibility="Collapsed" Margin="0,285,10,72"/>
+                    <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="10,347,182,10" FontSize="20" FontFamily="Dubai"/>
+
+                    <Button x:Name="btnRefresh" Width="172" Height="38" Margin="602,347,10,10" Content="Оновити дані" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnRefresh_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+                </Grid>
+                <!--Меню панель-->
+                <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
+                    <StackPanel Margin="14,14,14,0">
+                        <Button Height="38" Content="ГОЛОВНА" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ТОП 100" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ПОШУК" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="НАЛАШТУВАННЯ" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
         </StackPanel>
-
-        <StackPanel Margin="738,87,19,119">
-            <Button x:Name="btnCopy1" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy1_Click"/>
-            <Button x:Name="btnCopy2" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy2_Click"/>
-            <Button x:Name="btnCopy3" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy3_Click"/>
-            <Button x:Name="btnCopy4" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy4_Click"/>
-            <Button x:Name="btnCopy5" Style="{StaticResource ButtonStyle}" Opacity="0" Height="49" Click="btnCopy5_Click"/>
-        </StackPanel>
-
-        <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
-
-        <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
-            <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
-            <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
-            <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
-            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0" Click="btnMenuSettings_Click"/>
-        </Grid>
     </Grid>
 </Window>

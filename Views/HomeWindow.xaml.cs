@@ -33,19 +33,22 @@ namespace CoinView.Views
 
 		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
-			if (e.LeftButton == MouseButtonState.Pressed)
-			{
-				DragMove();
-			}
-
             DoubleAnimation animation = new DoubleAnimation();
             animation.To = 0;
             animation.Duration = TimeSpan.FromSeconds(0.2);
             MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
         }
 
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
+        }
+
         #region BUTTONS
-        private void btnHide_Click(object sender, RoutedEventArgs e)
+		private void btnHide_Click(object sender, RoutedEventArgs e)
 		{
 			this.WindowState = WindowState.Minimized;
 		}
@@ -72,12 +75,12 @@ namespace CoinView.Views
 			MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
 		}
 
-		private void btnMenuHome_Click(object sender, RoutedEventArgs e)
-		{
-			UpdateCurrencyData();
-		}
+        private void btnMenuHome_Click(object sender, RoutedEventArgs e)
+        {
+            UpdateCurrencyData();
+        }
 
-		private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
+        private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
 		{
 			var topListWindow = new TopListWindow(0);
 			topListWindow.Left = this.Left;
