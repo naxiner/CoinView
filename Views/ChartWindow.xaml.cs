@@ -41,15 +41,18 @@ namespace CoinView.Views
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            if (e.LeftButton == MouseButtonState.Pressed)
-            {
-                DragMove();
-            }
-
             DoubleAnimation animation = new DoubleAnimation();
             animation.To = 0;
             animation.Duration = TimeSpan.FromSeconds(0.2);
             MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
         #region BUTTONS
@@ -104,6 +107,14 @@ namespace CoinView.Views
             searchWindow.Left = this.Left;
             searchWindow.Top = this.Top;
             searchWindow.Show();
+            Close();
+        }
+        private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow();
+            settingsWindow.Left = this.Left;
+            settingsWindow.Top = this.Top;
+            settingsWindow.Show();
             Close();
         }
 

@@ -7,9 +7,6 @@
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
         WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-    <Window.Background>
-        <ImageBrush ImageSource="../Resources/Images/ChartWindow.png"/>
-    </Window.Background>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -18,34 +15,105 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
-        <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
-        <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
-        
-        <lvc:CartesianChart x:Name="lvcChart" Visibility="Visible" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="LightGray" VerticalAlignment="Top" Height="287" Margin="10,49,10,0">
-            <lvc:CartesianChart.AxisX>
-                <lvc:Axis FontSize="12" Labels="{Binding Labels}"></lvc:Axis>
-            </lvc:CartesianChart.AxisX>
-            <lvc:CartesianChart.AxisY>
-                <lvc:Axis FontSize="12" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
-            </lvc:CartesianChart.AxisY>
-        </lvc:CartesianChart>
+        <StackPanel>
+            <!--Верхня панель-->
+            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="ГРАФІК" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+                <!--Кнопка меню-->
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="18">
+                            <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="9" X2="17" Y2="9" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка приховати-->
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка закрити-->
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="17" X2="17" Y2="0" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <!--Вікно програми-->
+            <Grid Height="411" Background="#D0D0D0">
+                <Grid Margin="8" Background="#F1F1F1">
+                    <lvc:CartesianChart x:Name="lvcChart" Visibility="Visible" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="LightGray" VerticalAlignment="Top" Height="279" Margin="10,10,10,0">
+                        <lvc:CartesianChart.AxisX>
+                            <lvc:Axis FontSize="12" Labels="{Binding Labels}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisX>
+                        <lvc:CartesianChart.AxisY>
+                            <lvc:Axis FontSize="12" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                        </lvc:CartesianChart.AxisY>
+                    </lvc:CartesianChart>
 
-        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,392,190,21" FontSize="20" FontFamily="Global User Interface"/>
+                    <Button x:Name="btn1day" Style="{StaticResource NormalButton}" Height="38" Margin="10,299,714,58" Content="1 д" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn1day_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button x:Name="btn7days" Style="{StaticResource NormalButton}" Height="38" Margin="80,299,644,58" Content="7 д" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn7days_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button x:Name="btn1month" Style="{StaticResource NormalButton}" Height="38" Margin="150,299,574,58" Content="1 м" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn1month_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
 
-        <Button x:Name="btn1day" Style="{StaticResource ButtonStyle}" Margin="18,343,722,68" Click="btn1day_Click"/>
-        <Button x:Name="btn7days" Style="{StaticResource ButtonStyle}" Margin="88,343,652,68" Click="btn7days_Click"/>
-        <Button x:Name="btn1month" Style="{StaticResource ButtonStyle}" Margin="158,343,582,68" Click="btn1month_Click"/>
+                    <Button x:Name="btnRefresh" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,299,10,58" Content="Оновити дані" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnRefresh_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button x:Name="btnReturn" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="Повернутись" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
 
-        <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Margin="610,343,19,68" Click="btnRefresh_Click"/>
-        <Button x:Name="btnReturn" Style="{StaticResource ButtonStyle}" Margin="610,391,18,20" Click="btnReturn_Click"/>
-
-        <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
-            <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
-            <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
-            <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
-            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0"/>
-        </Grid>
+                    <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="10,347,190,10" FontSize="20" FontFamily="Dubai"/>
+                </Grid>
+                <!--Меню панель-->
+                <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
+                    <StackPanel Margin="14,14,14,0">
+                        <Button Height="38" Content="ГОЛОВНА" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ТОП 100" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ПОШУК" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="НАЛАШТУВАННЯ" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>
