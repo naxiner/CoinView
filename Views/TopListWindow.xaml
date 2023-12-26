@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
         WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-    <Window.Background>
-        <ImageBrush ImageSource="../Resources/Images/TopListWindow.png"/>
-    </Window.Background>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,44 +14,128 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
-        <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
-        <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+        <StackPanel>
+            <!--Верхня панель-->
+            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="ТОП 100 КРИПТОВАЛЮТ" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+                <!--Кнопка меню-->
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="18">
+                            <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="9" X2="17" Y2="9" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка приховати-->
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка закрити-->
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="17" X2="17" Y2="0" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <!--Вікно програми-->
+            <Grid Height="411" Background="#D0D0D0">
+                <Grid Margin="8" Background="#F1F1F1">
+                    <Border Margin="10, 10" VerticalAlignment="Top" BorderBrush="Black" Height="275" BorderThickness="1" CornerRadius="30">
+                        <Grid>
+                            <Label x:Name="lbCurrencyName" Content="Bitcoin" Margin="0,-8,0,221" FontSize="34" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Bold" FontFamily="Dubai"/>
+                            <Label x:Name="lbCurrencySymbol" Content="BTC" Margin="0,32,0,201" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontFamily="Dubai"/>
 
-        <Label x:Name="lbCurrencyName" Content="Bitcoin" Margin="19,58,18,338" FontSize="30" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Bold" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySymbol" Content="BTC" Margin="19,96,18,314" FontSize="20" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontFamily="Global User Interface"/>
+                            <Label Content="Ціна" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="10,74,381,159" FontSize="20" FontFamily="Dubai"/>
+                            <Label x:Name="lbCurrencyPrice" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="10,98,381,135" FontSize="24" FontFamily="Dubai"/>
 
-        <Label Content="Ціна" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,146,400,269" FontSize="16" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyPrice" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="25,166,400,236" FontSize="20" FontFamily="Global User Interface"/>
-        <Label Content="Зміна за 24 години" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,146,25,269" FontSize="16" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyChangePercent" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="400,166,20,236" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label Content="Кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="10,137,381,96" FontSize="20" FontFamily="Dubai"/>
+                            <Label x:Name="lbCurrencySupply" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="10,161,381,72" FontSize="24" FontFamily="Dubai"/>
 
-        <Label Content="Кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,205,400,211" FontSize="16" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencySupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="25,223,400,179" FontSize="20" FontFamily="Global User Interface" />
-        <Label Content="Максимальна кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="400,205,26,210" FontSize="16" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyMaxSupply" Content="$11111111.11" VerticalContentAlignment="Center" Margin="398,223,22,179" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="10,197,381,36" FontSize="20" FontFamily="Dubai"/>
+                            <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="10,221,381,12" FontSize="24" FontFamily="Dubai"/>
 
-        <Label Content="Vwap24" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="25,262,400,154" FontSize="16" FontFamily="Global User Interface"/>
-        <Label x:Name="lbCurrencyVwap24Hr" Content="$11111111.11111111" VerticalContentAlignment="Center" Margin="25,279,400,123" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label Content="Зміна за 24 години" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="380,74,11,159" FontSize="20" FontFamily="Dubai"/>
+                            <Label x:Name="lbCurrencyChangePercent" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="380,98,11,135" FontSize="24" FontFamily="Dubai"/>
 
-        <Label x:Name="lbPopupText" Content="Скопійовано в буфер обміну!" HorizontalAlignment="Right" Margin="0,284,121,128" FontSize="20" FontFamily="Global User Interface" Visibility="Collapsed"/>
+                            <Label Content="Максимальна кількість на ринку" HorizontalContentAlignment="Left" VerticalContentAlignment="Bottom" Margin="380,137,11,96" FontSize="20" FontFamily="Dubai"/>
+                            <Label x:Name="lbCurrencyMaxSupply" Content="$11111111.1111111111111" VerticalContentAlignment="Center" Margin="380,161,11,72" FontSize="24" FontFamily="Dubai"/>
 
-        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="20,391,190,22" FontSize="20" FontFamily="Global User Interface"/>
+                            <Label x:Name="lbPopupText" Content="Скопійовано в буфер обміну!" HorizontalAlignment="Right" FontSize="20" FontFamily="Dubai" Visibility="Collapsed" Width="371" Margin="0,221,10,11" FontWeight="Bold"/>
+                        </Grid>
+                    </Border>
 
-        <Button x:Name="btnShowSource" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="19,343,609,68" Click="btnShowSource_Click" />
-        <Button x:Name="btnShowChart" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="201,343,427,68" Click="btnShowChart_Click" />
-        <Button x:Name="btnCopy" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="383,343,245,68" Click="btnCopy_Click" />
+                    <Grid Margin="0,285,0,0">
+                        <Button x:Name="btnShowSource" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="10,10,0,62" HorizontalAlignment="Left" Content="Відкрити джерело" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnShowSource_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button x:Name="btnShowChart" Style="{StaticResource NormalButton}" Width="172" Height="38" Content="Переглянути графік" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Margin="192,10,420,62" Click="btnShowChart_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button x:Name="btnCopy" Style="{StaticResource NormalButton}" Width="172" Height="38" Content="Скопіювати в буфер" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Margin="374,10,238,62" Click="btnCopy_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
 
-        <Button x:Name="btnBackward" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,343,110,68" Click="btnBackward_Click"/>
-        <Button x:Name="btnForward" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="701,343,19,68" Click="btnForward_Click"/>
-        <Button x:Name="btnRefresh" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,391,18,20" Click="btnRefresh_Click"/>
+                        <Button x:Name="btnBackward" Style="{StaticResource NormalButton}" Width="81" Height="38" Content="&lt;&lt;&lt;" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Margin="602,10,101,62" Click="btnBackward_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button x:Name="btnForward" Style="{StaticResource NormalButton}" Width="81" Height="38" Content="&gt;&gt;&gt;" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Margin="693,10,10,62" Click="btnForward_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
 
-        <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
-            <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
-            <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
-            <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0" Click="btnMenuSearch_Click"/>
-            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0"/>
-        </Grid>
+                        <Label x:Name="lbDateTime" Content="Інформацію оновлено станом на: " Margin="10,62,182,0" FontSize="20" FontFamily="Dubai"/>
+
+                        <Button x:Name="btnRefresh" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,62,10,10" Content="Оновити дані" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnRefresh_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                    </Grid>
+                </Grid>
+                <!--Меню панель-->
+                <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
+                    <StackPanel Margin="14,14,14,0">
+                        <Button Height="38" Content="ГОЛОВНА" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ТОП 100" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ПОШУК" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="НАЛАШТУВАННЯ" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

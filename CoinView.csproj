@@ -16,7 +16,6 @@
     <None Remove="Resources\Images\copyIcon.png" />
     <None Remove="Resources\Images\MenuTab.png" />
     <None Remove="Resources\Images\SearchWindow.png" />
-    <None Remove="Resources\Images\TopListWindow.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -34,7 +33,6 @@
     <Resource Include="Resources\Images\copyIcon.png" />
     <Resource Include="Resources\Images\MenuTab.png" />
     <Resource Include="Resources\Images\SearchWindow.png" />
-    <Resource Include="Resources\Images\TopListWindow.png" />
   </ItemGroup>
 
 </Project>

@@ -36,17 +36,20 @@ namespace CoinView.Views
 			}
 		}
 
-		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
-		{
-			if (e.LeftButton == MouseButtonState.Pressed)
-			{
-				DragMove();
-			}
-
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
             DoubleAnimation animation = new DoubleAnimation();
             animation.To = 0;
             animation.Duration = TimeSpan.FromSeconds(0.2);
             MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
+        }
+
+        private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            if (e.LeftButton == MouseButtonState.Pressed)
+            {
+                DragMove();
+            }
         }
 
         #region BUTTONS
@@ -104,6 +107,15 @@ namespace CoinView.Views
             Close();
         }
 
+        private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
+        {
+            var settingsWindow = new SettingsWindow();
+            settingsWindow.Left = this.Left;
+            settingsWindow.Top = this.Top;
+            settingsWindow.Show();
+            Close();
+        }
+
         private void btnShowSource_Click(object sender, RoutedEventArgs e)
 		{
 			Process.Start(new ProcessStartInfo
@@ -127,6 +139,18 @@ namespace CoinView.Views
 			Clipboard.SetText(CopyByIndex(currentIndex));
 			ShowPopup();
 		}
+		
+		private void btnBackward_Click(object sender, RoutedEventArgs e)
+		{
+            currentIndex -= 1;
+			if (currentIndex < 0)
+			{
+                currentIndex = 0;
+				return;
+			}
+
+			UpdateUI();
+        }
 
 		private void btnForward_Click(object sender, RoutedEventArgs e)
 		{
@@ -138,18 +162,6 @@ namespace CoinView.Views
             }
 
             UpdateUI();
-        }
-
-		private void btnBackward_Click(object sender, RoutedEventArgs e)
-		{
-            currentIndex -= 1;
-			if (currentIndex < 0)
-			{
-                currentIndex = 0;
-				return;
-			}
-
-			UpdateUI();
         }
 
 		private void btnRefresh_Click(object sender, RoutedEventArgs e)
