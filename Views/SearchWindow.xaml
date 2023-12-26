@@ -6,9 +6,6 @@
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
         WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown">
-    <Window.Background>
-        <ImageBrush ImageSource="../Resources/Images/SearchWindow.png"/>
-    </Window.Background>
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
@@ -17,22 +14,107 @@
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
-        <Button x:Name="btnHide" Style="{StaticResource ButtonStyle}" Margin="737,8,40,419" Opacity="0" Click="btnHide_Click"/>
-        <Button x:Name="btnClose" Style="{StaticResource ButtonStyle}" Margin="769,8,8,419" Opacity="0" Click="btnClose_Click"/>
-        <Button x:Name="btnMenu" Style="{StaticResource ButtonStyle}" Margin="8,8,769,419" Opacity="0" Click="btnMenu_Click" />
+        <StackPanel>
+            <!--Верхня панель-->
+            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="ПОШУК" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+                <!--Кнопка меню-->
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="18">
+                            <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="9" X2="17" Y2="9" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка приховати-->
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка закрити-->
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="17" X2="17" Y2="0" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <!--Вікно програми-->
+            <Grid Height="411" Background="#D0D0D0">
+                <Grid Margin="8" Background="#F1F1F1">
+                    <Label Content="Знайти криптовалюту" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Medium" FontFamily="Dubai" Margin="0,10,0,335">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Label.Effect>
+                    </Label>
+                    <!--Грід пошуку-->
+                    <Grid Margin="10,60,10,265">
+                        <Border Background="LightGray" VerticalAlignment="Top" BorderBrush="Black" Height="70" BorderThickness="1" CornerRadius="30">
+                            <Border.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Border.Effect>
+                        </Border>
+                        <Border Background="#F1F1F1" BorderBrush="Black" BorderThickness="1" Margin="17,12">
+                            <TextBox x:Name="tbSearch" BorderThickness="0" FontSize="34" KeyDown="tbSearch_KeyDown" FontFamily="Dubai" Background="{x:Null}" BorderBrush="{x:Null}" Margin="6,0,6,0" />
+                        </Border>
+                    </Grid>
+                    <Label Content="Шукати по id (1-100)" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,160,464,165">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Label.Effect>
+                    </Label>
+                    <Label Content="Шукати по назві (Bitcoin)" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,230,464,95">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Label.Effect>
+                    </Label>
+                    <Label Content="Шукати по символу (BTC)" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,300,464,25">
+                        <Label.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Label.Effect>
+                    </Label>
 
-        <TextBox x:Name="tbSearch" HorizontalAlignment="Center" Margin="0,99,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="720" Height="45" BorderThickness="0,0,0,0" FontSize="36" Background="{x:Null}" KeyDown="tbSearch_KeyDown" FontFamily="Global User Interface"/>
+                    <Label x:Name="lbPopupText" Content="Не знайдено жодного запису!" HorizontalAlignment="Right"  FontSize="28" FontFamily="Dubai" Visibility="Collapsed" Margin="0,160,10,165" Width="422" FontWeight="Bold"/>
 
-        <Label x:Name="lbPopupText" Content="Не знайдено жодного запису!" HorizontalAlignment="Right" Margin="0,188,20,206" FontSize="30" FontFamily="Global User Interface" Visibility="Collapsed"/>
-
-        <Button x:Name="btnSearch" Style="{StaticResource ButtonStyle}" Opacity="0" Margin="610,391,18,20" Click="btnSearch_Click"/>
-
-        <Grid Name="MenuPanel" Width="0" HorizontalAlignment="Left" Margin="0,39,0,0">
-            <Image Width="200" Height="411" HorizontalAlignment="Left" Source="../Resources/Images/MenuTab.png"/>
-            <Button x:Name="btnMenuHome" Style="{StaticResource ButtonStyle}" Margin="14,15,14,358" Opacity="0" Click="btnMenuHome_Click"/>
-            <Button x:Name="btnMenuTop100" Style="{StaticResource ButtonStyle}" Margin="14,67,14,306" Opacity="0" Click="btnMenuTop100_Click"/>
-            <Button x:Name="btnMenuSearch" Style="{StaticResource ButtonStyle}" Margin="14,119,14,254" Opacity="0"/>
-            <Button x:Name="btnMenuSettings" Style="{StaticResource ButtonStyle}" Margin="14,171,14,202" Opacity="0"/>
-        </Grid>
+                    <Button x:Name="btnRefresh" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="Знайти" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnSearch_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+                </Grid>
+                <!--Меню панель-->
+                <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
+                    <StackPanel Margin="14,14,14,0">
+                        <Button Height="38" Content="ГОЛОВНА" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ТОП 100" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="ПОШУК" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                        <Button Height="38" Content="НАЛАШТУВАННЯ" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
+                            <Button.Effect>
+                                <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                            </Button.Effect>
+                        </Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </StackPanel>
     </Grid>
 </Window>

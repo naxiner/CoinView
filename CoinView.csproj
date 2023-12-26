@@ -15,7 +15,6 @@
     <None Remove="Resources\Images\ChartWindow.png" />
     <None Remove="Resources\Images\copyIcon.png" />
     <None Remove="Resources\Images\MenuTab.png" />
-    <None Remove="Resources\Images\SearchWindow.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -32,7 +31,6 @@
     <Resource Include="Resources\Images\ChartWindow.png" />
     <Resource Include="Resources\Images\copyIcon.png" />
     <Resource Include="Resources\Images\MenuTab.png" />
-    <Resource Include="Resources\Images\SearchWindow.png" />
   </ItemGroup>
 
 </Project>
