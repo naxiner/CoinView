@@ -60,12 +60,10 @@
                                 <Button Style="{StaticResource ButtonImage}" HorizontalAlignment="Center" VerticalAlignment="Top" Click="btnEnglish_Click" Height="60" Width="90">
                                     <Image Source="../Resources/Images/countryIcons/ukIcon.png"/>
                                 </Button>
-
                                 <Button Style="{StaticResource ButtonImage}" HorizontalAlignment="Left" VerticalAlignment="Top" Click="btnUkrainian_Click" Height="60" Width="90">
                                     <Image Source="../Resources/Images/countryIcons/ukraineIcon.png"/>
                                 </Button>
-
-                                <Button Style="{StaticResource ButtonImage}" HorizontalAlignment="Right" VerticalAlignment="Top" Height="60" Width="90">
+                                <Button Style="{StaticResource ButtonImage}" HorizontalAlignment="Right" VerticalAlignment="Top" Click="btnGermany_Click" Height="60" Width="90">
                                     <Image Source="../Resources/Images/countryIcons/germanyIcon.png"/>
                                 </Button>
                             </Grid>

@@ -6,8 +6,9 @@
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/en-EN/Strings.en-EN.xaml"/>
-                <ResourceDictionary Source="Resources/ua-UA/Strings.ua-UA.xaml"/>
+                <ResourceDictionary Source="Resources/en/Strings.en.xaml"/>
+                <ResourceDictionary Source="Resources/uk/Strings.uk.xaml"/>
+                <ResourceDictionary Source="Resources/de/Strings.de.xaml"/>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

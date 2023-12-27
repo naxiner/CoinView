@@ -25,7 +25,7 @@ namespace CoinView {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("ua-UA")]
+        [global::System.Configuration.DefaultSettingValueAttribute("uk")]
         public string Language {
             get {
                 return ((string)(this["Language"]));

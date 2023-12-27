@@ -134,12 +134,17 @@ namespace CoinView.Views
 
         private void btnEnglish_Click(object sender, RoutedEventArgs e)
         {
-            SetLanguage("en-EN");
+            SetLanguage("en");
         }
 
         private void btnUkrainian_Click(object sender, RoutedEventArgs e)
         {
-            SetLanguage("ua-UA");
+            SetLanguage("uk");
+        }
+
+        private void btnGermany_Click(object sender, RoutedEventArgs e)
+        {
+            SetLanguage("de");
         }
     }
 }

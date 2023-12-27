@@ -1,0 +1,49 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:system="clr-namespace:System;assembly=netstandard">
+    
+    <!--MenuTab-->
+    <system:String x:Key="MenuHomeButton">MAIN</system:String>
+    <system:String x:Key="MenuTopListButton">TOP 100</system:String>
+    <system:String x:Key="MenuSearchButton">SUCHEN</system:String>
+    <system:String x:Key="MenuSettingsButton">EINRICHTEN</system:String>
+    
+    <!--Global Items-->
+    <system:String x:Key="DateTimeLable">Informationen aktualisiert ab:</system:String>
+    <system:String x:Key="RefreshButton">Aktualisieren</system:String>
+
+    <!--HomeWindow-->
+    <system:String x:Key="HomeWindowLabel">MAIN</system:String>
+    <system:String x:Key="TopFiveLable">Top 5 kryptowährungen</system:String>
+    <system:String x:Key="PopupCopyLable">In die zwischenablage kopiert!</system:String>
+
+    <!--TopListWindow-->
+    <system:String x:Key="TopListWindowLabel">TOP 100 KRYPTOWÄHRUNGEN</system:String>
+    <system:String x:Key="PriceLabel">Preis</system:String>
+    <system:String x:Key="CurrencySupplyLabel">Menge auf dem markt</system:String>
+    <system:String x:Key="CurrencyChangePercentLabel">Veränderung in 24 stunden</system:String>
+    <system:String x:Key="CurrencyMaxSupplyLabel">Maximale anzahl auf dem markt</system:String>
+    <system:String x:Key="ShowSourceButton">Offene quelle</system:String>
+    <system:String x:Key="ShowChartButton">Diagramm anzeigen</system:String>
+    <system:String x:Key="CopyButton">In den puffer kopieren</system:String>
+
+    <!--SearchWindow-->
+    <system:String x:Key="SearchWindowLabel">SUCHEN</system:String>
+    <system:String x:Key="SearchCryptoLabel">Eine kryptowährung finden</system:String>
+    <system:String x:Key="SearchByIdLabel">Suche nach id (1-100)</system:String>
+    <system:String x:Key="SearchByNameLabel">Suche nach titel (Bitcoin)</system:String>
+    <system:String x:Key="SearchBySymbolLabel">Suche nach symbolen (BTC)</system:String>
+    <system:String x:Key="CantFindLabel">Keine aufzeichnungen gefunden!</system:String>
+    <system:String x:Key="SearchButton">Suchen</system:String>
+
+    <!--ChartWindow-->
+    <system:String x:Key="ChartWindowLabel">Währungsdiagramm</system:String>
+    <system:String x:Key="OneDayButton">1 d</system:String>
+    <system:String x:Key="SevenDaysButton">7 d</system:String>
+    <system:String x:Key="OneMonthButton">1 m</system:String>
+    <system:String x:Key="ReturnButton">Rückkehr</system:String>
+
+    <!--SettingsWindow-->
+    <system:String x:Key="SettingsLabel">EINRICHTEN</system:String>
+    <system:String x:Key="ChangeLanguageLabel">Sprache ändern</system:String>
+</ResourceDictionary>
