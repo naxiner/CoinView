@@ -45,4 +45,5 @@
 
     <!--SettingsWindow-->
     <system:String x:Key="SettingsLabel">НАЛАШТУВАННЯ</system:String>
+    <system:String x:Key="ChangeLanguageLabel">Змінити мову</system:String>
 </ResourceDictionary>

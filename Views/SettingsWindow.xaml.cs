@@ -24,6 +24,14 @@ namespace CoinView.Views
             UpdateLanguage(userLanguage);
         }
 
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            DoubleAnimation animation = new DoubleAnimation();
+            animation.To = 0;
+            animation.Duration = TimeSpan.FromSeconds(0.2);
+            MenuPanel.BeginAnimation(Grid.WidthProperty, animation);
+        }
+
         private void Grid_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.LeftButton == MouseButtonState.Pressed)
