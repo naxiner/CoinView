@@ -25,6 +25,12 @@ namespace CoinView.Views
             UpdateCurrencyData();
         }
 
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            string userLanguage = Settings.Default.Language;
+            UpdateLanguage(userLanguage);
+        }
+
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             DoubleAnimation animation = new DoubleAnimation();
@@ -179,6 +185,20 @@ namespace CoinView.Views
         {
             lbPopupText.Visibility = Visibility;
             Task.Delay(1200).ContinueWith(t => this.Dispatcher.Invoke(() => lbPopupText.Visibility = Visibility.Collapsed));
+        }
+
+        private void UpdateLanguage(string culture)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
+
+            // Очищення минулих словників
+            this.Resources.MergedDictionaries.Clear();
+            this.Resources.MergedDictionaries.Add(dict);
+
+            DataContext = null;
+            DataContext = this;
         }
     }
 }

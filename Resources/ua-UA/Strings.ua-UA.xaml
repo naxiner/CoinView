@@ -1,18 +1,48 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
-
+    
+    <!--MenuTab-->
     <system:String x:Key="MenuHomeButton">ГОЛОВНА</system:String>
     <system:String x:Key="MenuTopListButton">ТОП 100</system:String>
     <system:String x:Key="MenuSearchButton">ПОШУК</system:String>
     <system:String x:Key="MenuSettingsButton">НАЛАШТУВАННЯ</system:String>
-
-    <system:String x:Key="PopupCopyLable">Скопійовано в буфер обміну!</system:String>
+    
+    <!--Global Items-->
     <system:String x:Key="DateTimeLable">Інформацію оновлено станом на:</system:String>
     <system:String x:Key="RefreshButton">Оновити дані</system:String>
 
+    <!--HomeWindow-->
     <system:String x:Key="HomeWindowLabel">ГОЛОВНА</system:String>
     <system:String x:Key="TopFiveLable">Топ 5 криптовалют</system:String>
+    <system:String x:Key="PopupCopyLable">Скопійовано в буфер обміну!</system:String>
 
-    <system:String x:Key="SettingsLabel">Налаштування</system:String>
+    <!--TopListWindow-->
+    <system:String x:Key="TopListWindowLabel">ТОП 100 КРИПТОВАЛЮТ</system:String>
+    <system:String x:Key="PriceLabel">Ціна</system:String>
+    <system:String x:Key="CurrencySupplyLabel">Кількість на ринку</system:String>
+    <system:String x:Key="CurrencyChangePercentLabel">Зміна за 24 години</system:String>
+    <system:String x:Key="CurrencyMaxSupplyLabel">Максимальна кількість на ринку</system:String>
+    <system:String x:Key="ShowSourceButton">Відкрити джерело</system:String>
+    <system:String x:Key="ShowChartButton">Переглянути графік</system:String>
+    <system:String x:Key="CopyButton">Скопіювати в буфер</system:String>
+
+    <!--SearchWindow-->
+    <system:String x:Key="SearchWindowLabel">ПОШУК</system:String>
+    <system:String x:Key="SearchCryptoLabel">Знайти криптовалюту</system:String>
+    <system:String x:Key="SearchByIdLabel">Шукати по id (1-100)</system:String>
+    <system:String x:Key="SearchByNameLabel">Шукати по назві (Bitcoin)</system:String>
+    <system:String x:Key="SearchBySymbolLabel">Шукати по символу (BTC)</system:String>
+    <system:String x:Key="CantFindLabel">Не знайдено жодного запису!</system:String>
+    <system:String x:Key="SearchButton">Знайти</system:String>
+
+    <!--ChartWindow-->
+    <system:String x:Key="ChartWindowLabel">ГРАФІК</system:String>
+    <system:String x:Key="OneDayButton">1 д</system:String>
+    <system:String x:Key="SevenDaysButton">7 д</system:String>
+    <system:String x:Key="OneMonthButton">1 м</system:String>
+    <system:String x:Key="ReturnButton">Повернутись</system:String>
+
+    <!--SettingsWindow-->
+    <system:String x:Key="SettingsLabel">НАЛАШТУВАННЯ</system:String>
 </ResourceDictionary>

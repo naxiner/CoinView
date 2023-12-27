@@ -128,7 +128,7 @@
                         </Grid>
                     </Border>
 
-                    <Label x:Name="lbPopupText" Content="{DynamicResource PopupCopyLable}" HorizontalAlignment="Right" FontSize="20" FontFamily="Dubai" Visibility="Collapsed" Margin="0,285,10,72"/>
+                    <Label x:Name="lbPopupText" Content="{DynamicResource PopupCopyLable}" HorizontalAlignment="Right" FontSize="20" FontFamily="Dubai" Visibility="Collapsed" Margin="0,285,10,72" FontWeight="Bold"/>
                     <Label x:Name="lbDateTime" Content="{DynamicResource DateTimeLable}" Margin="10,347,182,10" FontSize="20" FontFamily="Dubai"/>
 
                     <Button x:Name="btnRefresh" Content="{DynamicResource RefreshButton}" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnRefresh_Click">

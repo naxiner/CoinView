@@ -2,21 +2,47 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
-
+    <!--MenuTab-->
     <system:String x:Key="MenuHomeButton">MAIN</system:String>
     <system:String x:Key="MenuTopListButton">TOP 100</system:String>
     <system:String x:Key="MenuSearchButton">SEARCH</system:String>
     <system:String x:Key="MenuSettingsButton">SETTINGS</system:String>
 
-    <system:String x:Key="PopupCopyLable">Copied to the clipboard!</system:String>
+    <!--Global Items-->
     <system:String x:Key="DateTimeLable">Information updated as of: </system:String>
     <system:String x:Key="RefreshButton">Refresh</system:String>
 
+    <!--HomeWindow-->
     <system:String x:Key="HomeWindowLabel">MAIN</system:String>
     <system:String x:Key="TopFiveLable">Top 5 cryptocurrencies</system:String>
+    <system:String x:Key="PopupCopyLable">Copied to the clipboard!</system:String>
 
+    <!--TopListWindow-->
+    <system:String x:Key="TopListWindowLabel">TOP 100 CRYPTOCURRENCIES</system:String>
+    <system:String x:Key="PriceLabel">Price</system:String>
+    <system:String x:Key="CurrencySupplyLabel">Quantity on market</system:String>
+    <system:String x:Key="CurrencyChangePercentLabel">Change in 24 hours</system:String>
+    <system:String x:Key="CurrencyMaxSupplyLabel">Maximum quantity on market</system:String>
+    <system:String x:Key="ShowSourceButton">Open source</system:String>
+    <system:String x:Key="ShowChartButton">Open chart</system:String>
+    <system:String x:Key="CopyButton">Copy to clipboard</system:String>
 
+    <!--SearchWindow-->
+    <system:String x:Key="SearchWindowLabel">SEARH</system:String>
+    <system:String x:Key="SearchCryptoLabel">Find cryptocurrency</system:String>
+    <system:String x:Key="SearchByIdLabel">Search by id (1-100)</system:String>
+    <system:String x:Key="SearchByNameLabel">Search by name (Bitcoin)</system:String>
+    <system:String x:Key="SearchBySymbolLabel">Search by symbol (BTC)</system:String>
+    <system:String x:Key="CantFindLabel">No records found!</system:String>
+    <system:String x:Key="SearchButton">Search</system:String>
 
+    <!--ChartWindow-->
+    <system:String x:Key="ChartWindowLabel">CHART</system:String>
+    <system:String x:Key="OneDayButton">1 d</system:String>
+    <system:String x:Key="SevenDaysButton">7 d</system:String>
+    <system:String x:Key="OneMonthButton">1 m</system:String>
+    <system:String x:Key="ReturnButton">Return</system:String>
 
-    <system:String x:Key="SettingsLabel">Settings</system:String>
+    <!--SettingsWindow-->
+    <system:String x:Key="SettingsLabel">SETTINGS</system:String>
 </ResourceDictionary>
