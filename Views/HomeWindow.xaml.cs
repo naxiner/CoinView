@@ -31,7 +31,13 @@ namespace CoinView.Views
 			UpdateCurrencyData();
 		}
 
-		private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            string userLanguage = Settings.Default.Language;
+            UpdateLanguage(userLanguage);
+        }
+
+        private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
 		{
             DoubleAnimation animation = new DoubleAnimation();
             animation.To = 0;
@@ -235,7 +241,8 @@ namespace CoinView.Views
 				}
 			}
 
-			lbDateTime.Content = $"Інформацію оновлено станом на: {currencyRoot.DateTime}";
+            string updateText = (string)TryFindResource("DateTimeLable");
+            lbDateTime.Content = $"{updateText} {currencyRoot.DateTime}";
 		}
 
 		private void OpenChartWindow(int index)
@@ -245,6 +252,20 @@ namespace CoinView.Views
             chartWindow.Top = this.Top;
             chartWindow.Show();
             Close();
+        }
+
+        private void UpdateLanguage(string culture)
+        {
+            ResourceDictionary dict = new ResourceDictionary();
+
+            dict.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
+
+            // Очищення минулих словників
+            this.Resources.MergedDictionaries.Clear();
+            this.Resources.MergedDictionaries.Add(dict);
+
+            DataContext = null;
+            DataContext = this;
         }
     }
 }

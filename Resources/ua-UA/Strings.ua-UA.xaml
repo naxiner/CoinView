@@ -1,0 +1,18 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+                    xmlns:system="clr-namespace:System;assembly=netstandard">
+
+    <system:String x:Key="MenuHomeButton">ГОЛОВНА</system:String>
+    <system:String x:Key="MenuTopListButton">ТОП 100</system:String>
+    <system:String x:Key="MenuSearchButton">ПОШУК</system:String>
+    <system:String x:Key="MenuSettingsButton">НАЛАШТУВАННЯ</system:String>
+
+    <system:String x:Key="PopupCopyLable">Скопійовано в буфер обміну!</system:String>
+    <system:String x:Key="DateTimeLable">Інформацію оновлено станом на:</system:String>
+    <system:String x:Key="RefreshButton">Оновити дані</system:String>
+
+    <system:String x:Key="HomeWindowLabel">ГОЛОВНА</system:String>
+    <system:String x:Key="TopFiveLable">Топ 5 криптовалют</system:String>
+
+    <system:String x:Key="SettingsLabel">Налаштування</system:String>
+</ResourceDictionary>

@@ -4,6 +4,11 @@
              xmlns:local="clr-namespace:CoinView"
              StartupUri="Views/HomeWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Resources/en-EN/Strings.en-EN.xaml"/>
+                <ResourceDictionary Source="Resources/ua-UA/Strings.ua-UA.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

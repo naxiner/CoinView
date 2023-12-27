@@ -5,13 +5,21 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
-        WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize">
+        WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resources\Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
     <Grid>
         <StackPanel>
-            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-                <Label Content="НАЛАШТУВАННЯ" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+            <!--Верхня панель-->
+            <Grid Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="{DynamicResource SettingsLabel}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
                 <!--Кнопка меню-->
-                <Button x:Name="btnMenu" BorderBrush="#4B4B4B" Background="#696969" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="18">
                             <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
@@ -21,7 +29,7 @@
                     </Button.Content>
                 </Button>
                 <!--Кнопка приховати-->
-                <Button x:Name="btnHide" BorderBrush="#4B4B4B" Background="#696969" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="17">
                             <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
@@ -29,7 +37,7 @@
                     </Button.Content>
                 </Button>
                 <!--Кнопка закрити-->
-                <Button x:Name="btnClose" BorderBrush="#4B4B4B" Background="#696969" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="17">
                             <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
@@ -38,26 +46,31 @@
                     </Button.Content>
                 </Button>
             </Grid>
+            <!--Вікно програми-->
             <Grid Height="411" Background="#D0D0D0">
-                <Grid Margin="8" Background="#F1F1F1"></Grid>
+                <Grid Margin="8" Background="#F1F1F1">
+                    <Button x:Name="btnEnglish" Content="ENGLISH" HorizontalAlignment="Left" Margin="127,61,0,0" VerticalAlignment="Top" Click="btnEnglish_Click"/>
+                    <Button x:Name="btnUkrainian" Content="UKRAINIAN" HorizontalAlignment="Left" Margin="172,61,0,0" VerticalAlignment="Top" Click="btnUkrainian_Click"/>
+                </Grid>
+                <!--Меню панель-->
                 <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
                     <StackPanel Margin="14,14,14,0">
-                        <Button Height="38" Content="ГОЛОВНА" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium">
+                        <Button Height="38" Content="ГОЛОВНА" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="ТОП 100" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium">
+                        <Button Height="38" Content="ТОП 100" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="ПОШУК" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium">
+                        <Button Height="38" Content="ПОШУК" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="НАЛАШТУВАННЯ" BorderThickness="0" Background="#D0D0D0" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium">
+                        <Button Height="38" Content="НАЛАШТУВАННЯ" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
