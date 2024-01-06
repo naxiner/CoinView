@@ -4,7 +4,8 @@
     <!--GlobalItems-->
     <SolidColorBrush x:Key="Text" Color="#000000"/>
     <SolidColorBrush x:Key="Border" Color="#000000"/>
-
+    <SolidColorBrush x:Key="ButtonBG" Color="#D0D0D0"/>
+    
     <!--MenuTab-->
     <SolidColorBrush x:Key="MenuBG" Color="#696969"/>
     <SolidColorBrush x:Key="MenuButtonBG" Color="#D0D0D0"/>
