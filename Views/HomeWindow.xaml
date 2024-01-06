@@ -16,7 +16,7 @@
     <Grid>
         <StackPanel>
             <!--Верхня панель-->
-            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+            <Grid  Height="39" VerticalAlignment="Top" Background="{DynamicResource TopPanel}" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
                 <Label Content="{DynamicResource HomeWindowLabel}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
                 <!--Кнопка меню-->
                 <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">

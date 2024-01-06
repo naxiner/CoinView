@@ -13,15 +13,21 @@ namespace CoinView.Views
     /// </summary>
     public partial class SettingsWindow : Window
     {
+        private ResourceDictionary languageDictionary;
+        private ResourceDictionary themeDictionary;
+
         public SettingsWindow()
         {
             InitializeComponent();
+            LoadDictionaries();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string userLanguage = Settings.Default.Language;
+            string userLanguage = AppLanguage.Default.Language;
+            string userTheme = AppTheme.Default.Theme;
             UpdateLanguage(userLanguage);
+            UpdateTheme(userTheme);
         }
 
         private void Window_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -112,24 +118,52 @@ namespace CoinView.Views
             Thread.CurrentThread.CurrentUICulture = cultureInfo;
 
             // Збереження обраної мови у налаштуваннях
-            Settings.Default.Language = culture;
-            Settings.Default.Save();
+            AppLanguage.Default.Language = culture;
+            AppLanguage.Default.Save();
 
             UpdateLanguage(culture);
         }
 
         private void UpdateLanguage(string culture)
         {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            dict.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
+            languageDictionary.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
 
             // Очищення минулих словників
-            this.Resources.MergedDictionaries.Clear();
-            this.Resources.MergedDictionaries.Add(dict);
-            
+            Resources.MergedDictionaries[0] = languageDictionary;
+
             DataContext = null;
             DataContext = this;
+        }
+
+        private void SetTheme(string theme) 
+        {
+            AppTheme.Default.Theme = theme;
+            AppTheme.Default.Save();
+
+            UpdateTheme(theme);
+        }
+
+        private void UpdateTheme(string theme)
+        {
+            themeDictionary.Source = new Uri($"..\\Resources\\Themes\\{theme}.xaml", UriKind.Relative);
+
+            // Оновити колекцію тем
+            Resources.MergedDictionaries[0] = themeDictionary;
+        }
+
+        private void LoadDictionaries()
+        {
+            // Завантаження словника для мови
+            languageDictionary = new ResourceDictionary();
+            languageDictionary.Source = new Uri($"pack://application:,,,/CoinView;component/Resources/{AppLanguage.Default.Language}/Strings.{AppLanguage.Default.Language}.xaml");
+
+            // Завантаження словника для теми
+            themeDictionary = new ResourceDictionary();
+            themeDictionary.Source = new Uri($"pack://application:,,,/CoinView;component/Resources/Themes/{AppTheme.Default.Theme}.xaml");
+
+            // Додавання словників до колекції
+            this.Resources.MergedDictionaries.Add(languageDictionary);
+            this.Resources.MergedDictionaries.Add(themeDictionary);
         }
 
         private void btnEnglish_Click(object sender, RoutedEventArgs e)
@@ -145,6 +179,16 @@ namespace CoinView.Views
         private void btnGermany_Click(object sender, RoutedEventArgs e)
         {
             SetLanguage("de");
+        }
+
+        private void btnWhiteTheme_Click(object sender, RoutedEventArgs e)
+        {
+            SetTheme("WhiteTheme");
+        }
+
+        private void btnBlackTheme_Click(object sender, RoutedEventArgs e)
+        {
+            SetTheme("BlackTheme");
         }
     }
 }

@@ -36,17 +36,26 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="Settings.Designer.cs">
+    <Compile Update="AppLanguage.Designer.cs">
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <AutoGen>True</AutoGen>
-      <DependentUpon>Settings.settings</DependentUpon>
+      <DependentUpon>AppLanguage.settings</DependentUpon>
+    </Compile>
+    <Compile Update="AppTheme.Designer.cs">
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>AppTheme.settings</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Settings.settings">
+    <None Update="AppLanguage.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
-      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+      <LastGenOutput>AppLanguage.Designer.cs</LastGenOutput>
+    </None>
+    <None Update="AppTheme.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>AppTheme.Designer.cs</LastGenOutput>
     </None>
   </ItemGroup>
 

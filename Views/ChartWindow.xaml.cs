@@ -19,6 +19,9 @@ namespace CoinView.Views
     /// </summary>
     public partial class ChartWindow : Window
     {
+        private ResourceDictionary languageDictionary;
+        private ResourceDictionary themeDictionary;
+
         ApiService apiService = new ApiService();
         private CurrencyRoot currencyRoot = new CurrencyRoot();
         private List<CurrencyHistory> currencyHistory = new List<CurrencyHistory>();
@@ -37,11 +40,12 @@ namespace CoinView.Views
             SeriesCollection = new SeriesCollection();
             InitializeComponent();
             UpdateCurrencyData();
+            LoadDictionaries();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            string userLanguage = Settings.Default.Language;
+            string userLanguage = AppLanguage.Default.Language;
             UpdateLanguage(userLanguage);
         }
 
@@ -238,16 +242,28 @@ namespace CoinView.Views
 
         private void UpdateLanguage(string culture)
         {
-            ResourceDictionary dict = new ResourceDictionary();
-
-            dict.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
+            languageDictionary.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
 
             // Очищення минулих словників
-            this.Resources.MergedDictionaries.Clear();
-            this.Resources.MergedDictionaries.Add(dict);
+            Resources.MergedDictionaries[0] = languageDictionary;
 
             DataContext = null;
             DataContext = this;
+        }
+
+        private void LoadDictionaries()
+        {
+            // Завантаження словника для мови
+            languageDictionary = new ResourceDictionary();
+            languageDictionary.Source = new Uri($"pack://application:,,,/CoinView;component/Resources/{AppLanguage.Default.Language}/Strings.{AppLanguage.Default.Language}.xaml");
+
+            // Завантаження словника для теми
+            themeDictionary = new ResourceDictionary();
+            themeDictionary.Source = new Uri($"pack://application:,,,/CoinView;component/Resources/Themes/{AppTheme.Default.Theme}.xaml");
+
+            // Додавання словників до колекції
+            this.Resources.MergedDictionaries.Add(languageDictionary);
+            this.Resources.MergedDictionaries.Add(themeDictionary);
         }
     }
 }
