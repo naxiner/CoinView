@@ -33,7 +33,7 @@
     
     <Style x:Key="ButtonTitleBar" TargetType="Button">
         <Setter Property="Background" Value="#696969"/>
-        <Setter Property="BorderBrush" Value="#4B4B4B"/>
+        <Setter Property="BorderBrush" Value="#595959"/>
         <Setter Property="Foreground" Value="#00FFFFFF"/>
         <Setter Property="Template">
             <Setter.Value>

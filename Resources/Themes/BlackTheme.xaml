@@ -1,5 +1,17 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <SolidColorBrush x:Key="TopPanel" Color="Black"/>
+    <!--GlobalItems-->
+    <SolidColorBrush x:Key="Text" Color="#FFFFFF"/>
+
+    <!--MenuTab-->
+    <SolidColorBrush x:Key="MenuBG" Color="#444444"/>
+    <SolidColorBrush x:Key="MenuButtonBG" Color="#232323"/>
+
+    <!--TopPanel-->
+    <SolidColorBrush x:Key="TopPanel" Color="#212121"/>
+    <SolidColorBrush x:Key="MainWindowBorder" Color="#595959"/>
+    <SolidColorBrush x:Key="MainWindowBG" Color="#797979"/>
+    <SolidColorBrush x:Key="TopPanelButtonBG" Color="#494949"/>
+
 </ResourceDictionary>
