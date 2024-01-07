@@ -92,7 +92,7 @@
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="btnReturn" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="{DynamicResource ReturnButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium">
+                    <Button x:Name="btnReturn" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="{DynamicResource ReturnButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnReturn_Click">
                         <Button.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Button.Effect>

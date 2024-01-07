@@ -5,6 +5,7 @@ using LiveCharts;
 using LiveCharts.Wpf;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -215,6 +216,11 @@ namespace CoinView.Views
 
         private async void UpdateCurrencyChart()
         {
+            var cultureInfo = CultureInfo.CurrentCulture;
+            string dateFormat = "dd.MM.yyyy";
+            string timeFormat = cultureInfo.DateTimeFormat.ShortTimePattern;
+            string dateTime = $"{dateFormat} {timeFormat}";
+
             SeriesCollection.Clear();
 
             var chartValues = await UpdateCurrencyHistory();
@@ -232,7 +238,7 @@ namespace CoinView.Views
             YFormatter = value => value.ToString("N2") + "$";
 
             // Створюємо масив міток для відображення на осі X
-            Labels = chartValues.Select(x => x.Date.ToString("f")).ToArray();
+            Labels = chartValues.Select(x => x.Date.ToString(dateTime)).ToArray();
 
             // Поновлюємо контекст даних графіку
             lvcChart.DataContext = null;
