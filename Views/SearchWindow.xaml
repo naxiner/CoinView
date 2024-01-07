@@ -16,10 +16,10 @@
     <Grid>
         <StackPanel>
             <!--Верхня панель-->
-            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-                <Label Content="{DynamicResource SearchWindowLabel}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+            <Grid  Height="39" VerticalAlignment="Top" Background="{DynamicResource TopPanel}" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="{DynamicResource SearchWindowLabel}" Foreground="{DynamicResource Text}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
                 <!--Кнопка меню-->
-                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="18">
                             <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
@@ -29,7 +29,7 @@
                     </Button.Content>
                 </Button>
                 <!--Кнопка приховати-->
-                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="17">
                             <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
@@ -37,7 +37,7 @@
                     </Button.Content>
                 </Button>
                 <!--Кнопка закрити-->
-                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="17">
                             <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
@@ -47,35 +47,35 @@
                 </Button>
             </Grid>
             <!--Вікно програми-->
-            <Grid Height="411" Background="#D0D0D0">
-                <Grid Margin="8" Background="#F1F1F1">
-                    <Label Content="{DynamicResource SearchCryptoLabel}" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Medium" FontFamily="Dubai" Margin="0,10,0,335">
+            <Grid Height="411" Background="{DynamicResource MainWindowBorder}">
+                <Grid Margin="8" Background="{DynamicResource MainWindowBG}">
+                    <Label Content="{DynamicResource SearchCryptoLabel}" Foreground="{DynamicResource Text}" FontSize="24" HorizontalContentAlignment="Center" VerticalContentAlignment="Top" FontWeight="Medium" FontFamily="Dubai" Margin="0,10,0,335">
                         <Label.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Label.Effect>
                     </Label>
                     <!--Грід пошуку-->
                     <Grid Margin="10,60,10,265">
-                        <Border Background="LightGray" VerticalAlignment="Top" BorderBrush="Black" Height="70" BorderThickness="1" CornerRadius="30">
+                        <Border Background="{DynamicResource SearchBG}" BorderBrush="{DynamicResource Border}" VerticalAlignment="Top" Height="70" BorderThickness="1" CornerRadius="30">
                             <Border.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Border.Effect>
                         </Border>
-                        <Border Background="#F1F1F1" BorderBrush="Black" BorderThickness="1" Margin="17,12">
-                            <TextBox x:Name="tbSearch" BorderThickness="0" FontSize="34" KeyDown="tbSearch_KeyDown" FontFamily="Dubai" Background="{x:Null}" BorderBrush="{x:Null}" Margin="6,0,6,0" />
+                        <Border Background="{DynamicResource SearchBoxBG}" BorderBrush="{DynamicResource Border}" BorderThickness="1" Margin="17,12">
+                            <TextBox Background="{DynamicResource SearchBoxBG}" x:Name="tbSearch" BorderThickness="0" FontSize="34" KeyDown="tbSearch_KeyDown" FontFamily="Dubai" BorderBrush="{x:Null}" Margin="9,0,9,0" />
                         </Border>
                     </Grid>
-                    <Label Content="{DynamicResource SearchByIdLabel}" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,160,464,165">
+                    <Label Content="{DynamicResource SearchByIdLabel}" Foreground="{DynamicResource Text}" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,160,464,165">
                         <Label.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{DynamicResource SearchByNameLabel}" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,230,464,95">
+                    <Label Content="{DynamicResource SearchByNameLabel}" Foreground="{DynamicResource Text}" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,230,464,95">
                         <Label.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Label.Effect>
                     </Label>
-                    <Label Content="{DynamicResource SearchBySymbolLabel}" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,300,464,25">
+                    <Label Content="{DynamicResource SearchBySymbolLabel}" Foreground="{DynamicResource Text}" FontSize="24" HorizontalContentAlignment="Left" VerticalContentAlignment="Top" FontWeight="Normal" FontFamily="Dubai" Margin="10,300,464,25">
                         <Label.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Label.Effect>
@@ -83,7 +83,7 @@
 
                     <Label x:Name="lbPopupText" Content="{DynamicResource CantFindLabel}" HorizontalAlignment="Right"  FontSize="28" FontFamily="Dubai" Visibility="Collapsed" Margin="0,160,10,165" Width="422" FontWeight="Bold"/>
 
-                    <Button x:Name="btnSearch" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="{DynamicResource SearchButton}" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnSearch_Click">
+                    <Button x:Name="btnSearch" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="{DynamicResource SearchButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnSearch_Click">
                         <Button.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Button.Effect>

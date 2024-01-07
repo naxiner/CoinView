@@ -4,6 +4,7 @@
     <!--GlobalItems-->
     <SolidColorBrush x:Key="Text" Color="#FFFFFF"/>
     <SolidColorBrush x:Key="Border" Color="#FFFFFF"/>
+    <SolidColorBrush x:Key="BorderBG" Color="#303030"/>
     <SolidColorBrush x:Key="ButtonBG" Color="#212121"/>
 
     <!--MenuTab-->
@@ -16,7 +17,8 @@
     <SolidColorBrush x:Key="MainWindowBG" Color="#797979"/>
     <SolidColorBrush x:Key="TopPanelButtonBG" Color="#494949"/>
     
-    <!--HomeWindow-->
-    <SolidColorBrush x:Key="BorderBG" Color="#303030"/>
+    <!--SearchWindow-->
+    <SolidColorBrush x:Key="SearchBG" Color="#303030"/>
+    <SolidColorBrush x:Key="SearchBoxBG" Color="#E1E1E1"/>
 
 </ResourceDictionary>

@@ -28,7 +28,7 @@
     <system:String x:Key="CopyButton">Copy to clipboard</system:String>
 
     <!--SearchWindow-->
-    <system:String x:Key="SearchWindowLabel">SEARH</system:String>
+    <system:String x:Key="SearchWindowLabel">SEARCH</system:String>
     <system:String x:Key="SearchCryptoLabel">Find cryptocurrency</system:String>
     <system:String x:Key="SearchByIdLabel">Search by id (1-100)</system:String>
     <system:String x:Key="SearchByNameLabel">Search by name (Bitcoin)</system:String>
