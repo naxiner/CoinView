@@ -17,10 +17,10 @@
     <Grid>
         <StackPanel>
             <!--Верхня панель-->
-            <Grid  Height="39" VerticalAlignment="Top" Background="#929292" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
-                <Label Content="{DynamicResource ChartWindowLabel}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+            <Grid  Height="39" VerticalAlignment="Top" Background="{DynamicResource TopPanel}" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="{DynamicResource ChartWindowLabel}" Foreground="{DynamicResource Text}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
                 <!--Кнопка меню-->
-                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8" Click="btnMenu_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="18">
                             <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
@@ -30,7 +30,7 @@
                     </Button.Content>
                 </Button>
                 <!--Кнопка приховати-->
-                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="17">
                             <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
@@ -38,7 +38,7 @@
                     </Button.Content>
                 </Button>
                 <!--Кнопка закрити-->
-                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
                     <Button.Content>
                         <Canvas Width="17" Height="17">
                             <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
@@ -48,65 +48,77 @@
                 </Button>
             </Grid>
             <!--Вікно програми-->
-            <Grid Height="411" Background="#D0D0D0">
-                <Grid Margin="8" Background="#F1F1F1">
-                    <lvc:CartesianChart x:Name="lvcChart" Visibility="Visible" Series="{Binding SeriesCollection}" LegendLocation="Right" Background="LightGray" VerticalAlignment="Top" Height="279" Margin="10,10,10,0">
+            <Grid Height="411" Background="{DynamicResource MainWindowBorder}">
+                <Grid Margin="8" Background="{DynamicResource MainWindowBG}">
+                    <lvc:CartesianChart x:Name="lvcChart" Foreground="{DynamicResource Text}" Visibility="Visible" Series="{Binding SeriesCollection}" LegendLocation="Right" VerticalAlignment="Top" Height="279" Margin="10,10,10,0">
+                        <lvc:CartesianChart.DataTooltip>
+                            <lvc:DefaultTooltip Background="{DynamicResource BorderBG}" Foreground="{DynamicResource Text}"/>
+                        </lvc:CartesianChart.DataTooltip>
+                        
                         <lvc:CartesianChart.AxisX>
-                            <lvc:Axis FontSize="12" Labels="{Binding Labels}"></lvc:Axis>
+                            <lvc:Axis FontSize="12" Foreground="{DynamicResource Text}" Labels="{Binding Labels}">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Stroke="{DynamicResource Border}"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
                         </lvc:CartesianChart.AxisX>
                         <lvc:CartesianChart.AxisY>
-                            <lvc:Axis FontSize="12" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                            <lvc:Axis FontSize="12" Foreground="{DynamicResource Text}" LabelFormatter="{Binding YFormatter}">
+                                <lvc:Axis.Separator>
+                                    <lvc:Separator Stroke="{DynamicResource Border}"/>
+                                </lvc:Axis.Separator>
+                            </lvc:Axis>
                         </lvc:CartesianChart.AxisY>
                     </lvc:CartesianChart>
 
-                    <Button x:Name="btn1day" Style="{StaticResource NormalButton}" Height="38" Margin="10,299,714,58" Content="{DynamicResource OneDayButton}" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn1day_Click">
+                    <Button x:Name="btn1day" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Height="38" Margin="10,299,714,58" Content="{DynamicResource OneDayButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn1day_Click">
                         <Button.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="btn7days" Style="{StaticResource NormalButton}" Height="38" Margin="80,299,644,58" Content="{DynamicResource SevenDaysButton}" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn7days_Click">
+                    <Button x:Name="btn7days" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Height="38" Margin="80,299,644,58" Content="{DynamicResource SevenDaysButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn7days_Click">
                         <Button.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Button.Effect>
                     </Button>
-                    <Button x:Name="btn1month" Style="{StaticResource NormalButton}" Height="38" Margin="150,299,574,58" Content="{DynamicResource OneMonthButton}" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn1month_Click">
-                        <Button.Effect>
-                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
-                        </Button.Effect>
-                    </Button>
-
-                    <Button x:Name="btnRefresh" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,299,10,58" Content="{DynamicResource RefreshButton}" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnRefresh_Click">
-                        <Button.Effect>
-                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
-                        </Button.Effect>
-                    </Button>
-                    <Button x:Name="btnReturn" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="{DynamicResource ReturnButton}" BorderThickness="0" Background="#D0D0D0" FontFamily="Dubai" FontSize="16" FontWeight="Medium">
+                    <Button x:Name="btn1month" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Height="38" Margin="150,299,574,58" Content="{DynamicResource OneMonthButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btn1month_Click">
                         <Button.Effect>
                             <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                         </Button.Effect>
                     </Button>
 
-                    <Label x:Name="lbDateTime" Content="{DynamicResource DateTimeLable}" Margin="10,347,190,10" FontSize="20" FontFamily="Dubai"/>
+                    <Button x:Name="btnRefresh" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,299,10,58" Content="{DynamicResource RefreshButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnRefresh_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+                    <Button x:Name="btnReturn" Foreground="{DynamicResource Text}" Background="{DynamicResource ButtonBG}" Style="{StaticResource NormalButton}" Width="172" Height="38" Margin="602,347,10,10" Content="{DynamicResource ReturnButton}" BorderThickness="0" FontFamily="Dubai" FontSize="16" FontWeight="Medium">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+
+                    <Label x:Name="lbDateTime" Foreground="{DynamicResource Text}" Content="{DynamicResource DateTimeLable}" Margin="10,347,190,10" FontSize="20" FontFamily="Dubai"/>
                 </Grid>
                 <!--Меню панель-->
-                <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
+                <Grid Name="MenuPanel" Width="0" Background="{DynamicResource MenuBG}" HorizontalAlignment="Left">
                     <StackPanel Margin="14,14,14,0">
-                        <Button Height="38" Content="{DynamicResource MenuHomeButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
+                        <Button Height="38" Content="{DynamicResource MenuHomeButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="{DynamicResource MenuTopListButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
+                        <Button Height="38" Content="{DynamicResource MenuTopListButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="{DynamicResource MenuSearchButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
+                        <Button Height="38" Content="{DynamicResource MenuSearchButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="{DynamicResource MenuSettingsButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
+                        <Button Height="38" Content="{DynamicResource MenuSettingsButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>

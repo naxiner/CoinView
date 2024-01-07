@@ -90,24 +90,24 @@
                     </Button>
                 </Grid>
                 <!--Меню панель-->
-                <Grid Name="MenuPanel" Width="0" Background="#696969" HorizontalAlignment="Left">
+                <Grid Name="MenuPanel" Width="0" Background="{DynamicResource MenuBG}" HorizontalAlignment="Left">
                     <StackPanel Margin="14,14,14,0">
-                        <Button Height="38" Content="{DynamicResource MenuHomeButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
+                        <Button Height="38" Content="{DynamicResource MenuHomeButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuHome_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="{DynamicResource MenuTopListButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
+                        <Button Height="38" Content="{DynamicResource MenuTopListButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuTop100_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="{DynamicResource MenuSearchButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
+                        <Button Height="38" Content="{DynamicResource MenuSearchButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSearch_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
                         </Button>
-                        <Button Height="38" Content="{DynamicResource MenuSettingsButton}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
+                        <Button Height="38" Content="{DynamicResource MenuSettingsButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Style="{StaticResource NormalButton}" Margin="0,0,0,14" FontFamily="Dubai" FontSize="18" FontWeight="Medium" Click="btnMenuSettings_Click">
                             <Button.Effect>
                                 <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
                             </Button.Effect>
