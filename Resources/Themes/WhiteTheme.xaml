@@ -20,8 +20,5 @@
     <!--SearchWindow-->
     <SolidColorBrush x:Key="SearchBG" Color="LightGray"/>
     <SolidColorBrush x:Key="SearchBoxBG" Color="#F1F1F1"/>
-    
-    <!--ChartWindow-->
-    <SolidColorBrush x:Key="ChartBG" Color="LightGray"/>
 
 </ResourceDictionary>

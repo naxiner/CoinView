@@ -11,11 +11,18 @@
     <None Remove="Resources\Fonts\Jost-Bold.ttf" />
     <None Remove="Resources\Fonts\Jost-Medium.ttf" />
     <None Remove="Resources\Fonts\Jost-Regular.ttf" />
+    <None Remove="Resources\Images\blackThemeIcon.png" />
     <None Remove="Resources\Images\chartIcon.png" />
     <None Remove="Resources\Images\copyIcon.png" />
     <None Remove="Resources\Images\countryIcons\germanyIcon.png" />
     <None Remove="Resources\Images\countryIcons\ukIcon.png" />
     <None Remove="Resources\Images\countryIcons\ukraineIcon.png" />
+    <None Remove="Resources\Images\whiteThemeIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Images\blackThemeIcon.png" />
+    <Resource Include="Resources\Images\whiteThemeIcon.png" />
   </ItemGroup>
 
   <ItemGroup>

@@ -46,4 +46,6 @@
     <!--SettingsWindow-->
     <system:String x:Key="SettingsLabel">SETTINGS</system:String>
     <system:String x:Key="ChangeLanguageLabel">Change language</system:String>
+    <system:String x:Key="ChangeThemeLabel">Select theme</system:String>
+    
 </ResourceDictionary>
