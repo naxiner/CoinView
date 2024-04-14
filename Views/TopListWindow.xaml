@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CoinView.Views"
         mc:Ignorable="d"
-        Title="{DynamicResource WindowTitleTopList}"  WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
+        Icon="../Resources/logo.ico" Title="{DynamicResource WindowTitleTopList}"  WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" MouseLeftButtonDown="Window_MouseLeftButtonDown" Loaded="Window_Loaded">
     <Window.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>

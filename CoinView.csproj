@@ -18,9 +18,11 @@
     <None Remove="Resources\Images\countryIcons\ukIcon.png" />
     <None Remove="Resources\Images\countryIcons\ukraineIcon.png" />
     <None Remove="Resources\Images\whiteThemeIcon.png" />
+    <None Remove="Resources\logo.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Resources\logo.ico" />
     <Resource Include="Resources\Images\blackThemeIcon.png" />
     <Resource Include="Resources\Images\whiteThemeIcon.png" />
   </ItemGroup>
