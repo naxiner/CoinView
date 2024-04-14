@@ -2,13 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
 
+    <!--WindowTitle-->
+    <system:String x:Key="WindowTitleHome">CoinView - Main</system:String>
+    <system:String x:Key="WindowTitleTopList">CoinView - Top 100</system:String>
+    <system:String x:Key="WindowTitleSearch">CoinView - Search</system:String>
+    <system:String x:Key="WindowTitleSettings">CoinView - Settings</system:String>
+    <system:String x:Key="WindowTitleChart">CoinView - Chart</system:String>
+
     <!--MenuTab-->
     <system:String x:Key="MenuHomeButton">MAIN</system:String>
     <system:String x:Key="MenuTopListButton">TOP 100</system:String>
     <system:String x:Key="MenuSearchButton">SEARCH</system:String>
     <system:String x:Key="MenuSettingsButton">SETTINGS</system:String>
 
-    <!--Global Items-->
+    <!--GlobalItems-->
     <system:String x:Key="DateTimeLable">Information updated as of: </system:String>
     <system:String x:Key="RefreshButton">Refresh</system:String>
 

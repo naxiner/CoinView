@@ -1,14 +1,21 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
-    
+
+    <!--WindowTitle-->
+    <system:String x:Key="WindowTitleHome">CoinView - Main</system:String>
+    <system:String x:Key="WindowTitleTopList">CoinView - Top 100</system:String>
+    <system:String x:Key="WindowTitleSearch">CoinView - Suchen</system:String>
+    <system:String x:Key="WindowTitleSettings">CoinView - Einrichten</system:String>
+    <system:String x:Key="WindowTitleChart">CoinView - Diagramm</system:String>
+
     <!--MenuTab-->
     <system:String x:Key="MenuHomeButton">MAIN</system:String>
     <system:String x:Key="MenuTopListButton">TOP 100</system:String>
     <system:String x:Key="MenuSearchButton">SUCHEN</system:String>
     <system:String x:Key="MenuSettingsButton">EINRICHTEN</system:String>
     
-    <!--Global Items-->
+    <!--GlobalItems-->
     <system:String x:Key="DateTimeLable">Informationen aktualisiert ab:</system:String>
     <system:String x:Key="RefreshButton">Aktualisieren</system:String>
 

@@ -2,13 +2,20 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
                     xmlns:system="clr-namespace:System;assembly=netstandard">
     
+    <!--WindowTitle-->
+    <system:String x:Key="WindowTitleHome">CoinView - Головна</system:String>
+    <system:String x:Key="WindowTitleTopList">CoinView - Топ 100</system:String>
+    <system:String x:Key="WindowTitleSearch">CoinView - Пошук</system:String>
+    <system:String x:Key="WindowTitleSettings">CoinView - Налаштування</system:String>
+    <system:String x:Key="WindowTitleChart">CoinView - Графік</system:String>
+
     <!--MenuTab-->
     <system:String x:Key="MenuHomeButton">ГОЛОВНА</system:String>
     <system:String x:Key="MenuTopListButton">ТОП 100</system:String>
     <system:String x:Key="MenuSearchButton">ПОШУК</system:String>
     <system:String x:Key="MenuSettingsButton">НАЛАШТУВАННЯ</system:String>
     
-    <!--Global Items-->
+    <!--GlobalItems-->
     <system:String x:Key="DateTimeLable">Інформацію оновлено станом на:</system:String>
     <system:String x:Key="RefreshButton">Оновити дані</system:String>
 

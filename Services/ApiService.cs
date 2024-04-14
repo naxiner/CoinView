@@ -43,7 +43,7 @@ namespace CoinView.Services
 			}
             catch (Exception ex)
             {
-                MessageBox.Show($"$Відбулася помилка при спробі отримати дані: {ex.Message}");
+                MessageBox.Show($"Відбулася помилка при спробі отримати дані: {ex.Message}");
             }
         }
 
@@ -60,6 +60,7 @@ namespace CoinView.Services
         {
             string data = File.ReadAllText(filePath);
             currencyHistory = JsonConvert.DeserializeObject<CurrencyHistoryList>(data);
+
             return currencyHistory.Data;
 		}
 	}
