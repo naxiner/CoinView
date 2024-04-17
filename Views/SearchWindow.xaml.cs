@@ -3,6 +3,7 @@ using CoinView.Services;
 using CoinView.Utils;
 using System;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -81,43 +82,73 @@ namespace CoinView.Views
 
         private void btnMenuHome_Click(object sender, RoutedEventArgs e)
         {
-            var homeWindow = new HomeWindow();
-            homeWindow.Left = this.Left;
-            homeWindow.Top = this.Top;
-            homeWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var homeWindow = new HomeWindow();
+                homeWindow.Left = this.Left;
+                homeWindow.Top = this.Top;
+                homeWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
         {
-            var topListWindow = new TopListWindow(0);
-            topListWindow.Left = this.Left;
-            topListWindow.Top = this.Top;
-            topListWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var topListWindow = new TopListWindow(0);
+                topListWindow.Left = this.Left;
+                topListWindow.Top = this.Top;
+                topListWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuSearch_Click(object sender, RoutedEventArgs e)
         {
-            var searchWindow = new SearchWindow();
-            searchWindow.Left = this.Left;
-            searchWindow.Top = this.Top;
-            searchWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var searchWindow = new SearchWindow();
+                searchWindow.Left = this.Left;
+                searchWindow.Top = this.Top;
+                searchWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
+
         private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.Left = this.Left;
-            settingsWindow.Top = this.Top;
-            settingsWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var settingsWindow = new SettingsWindow();
+                settingsWindow.Left = this.Left;
+                settingsWindow.Top = this.Top;
+                settingsWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
             SearchBy();
         }
+
         private void tbSearch_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.Key == Key.Enter)
@@ -163,32 +194,55 @@ namespace CoinView.Views
 
         private void SearchBy()
         {
-            int id = GetSearchingId(tbSearch.Text);
-            if (id == -1)
+            if (!IsInternetAvailable())
             {
-                ShowPopup();
+                OpenNoConnectionWindow();
             }
             else
             {
-                var topListWindow = new TopListWindow(id - 1);
-                topListWindow.Left = this.Left;
-                topListWindow.Top = this.Top;
-                topListWindow.Show();
-                Close();
+                int id = GetSearchingId(tbSearch.Text);
+                if (id == -1)
+                {
+                    ShowPopup();
+                }
+                else
+                {
+                    var topListWindow = new TopListWindow(id - 1);
+                    topListWindow.Left = this.Left;
+                    topListWindow.Top = this.Top;
+                    topListWindow.Show();
+                    Close();
+                }
             }
         }
 
         private async void UpdateCurrencyData()
         {
-            ApiService apiService = new ApiService();
-            await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
-            currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
+            if (!IsInternetAvailable())
+            {
+                OpenNoConnectionWindow();
+            }
+            else
+            {
+                ApiService apiService = new ApiService();
+                await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
+                currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
+            }
         }
 
         private void ShowPopup()
         {
             lbPopupText.Visibility = Visibility;
             Task.Delay(1200).ContinueWith(t => this.Dispatcher.Invoke(() => lbPopupText.Visibility = Visibility.Collapsed));
+        }
+
+        private void OpenNoConnectionWindow()
+        {
+            var noConnectionWindow = new NoConnectionWindow();
+            noConnectionWindow.Left = this.Left;
+            noConnectionWindow.Top = this.Top;
+            noConnectionWindow.Show();
+            Close();
         }
 
         private void UpdateLanguage(string culture)
@@ -215,6 +269,22 @@ namespace CoinView.Views
             // Додавання словників до колекції
             this.Resources.MergedDictionaries.Add(languageDictionary);
             this.Resources.MergedDictionaries.Add(themeDictionary);
+        }
+
+        private bool IsInternetAvailable()
+        {
+            using (var ping = new Ping())
+            {
+                try
+                {
+                    var reply = ping.Send("8.8.8.8", 1000); // Google DNS сервер
+                    return reply.Status == IPStatus.Success;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

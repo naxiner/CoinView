@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Globalization;
+using System.Net.NetworkInformation;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -76,38 +77,66 @@ namespace CoinView.Views
 
         private void btnMenuHome_Click(object sender, RoutedEventArgs e)
         {
-            var homeWindow = new HomeWindow();
-            homeWindow.Left = this.Left;
-            homeWindow.Top = this.Top;
-            homeWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var homeWindow = new HomeWindow();
+                homeWindow.Left = this.Left;
+                homeWindow.Top = this.Top;
+                homeWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
         {
-            var topListWindow = new TopListWindow(0);
-            topListWindow.Left = this.Left;
-            topListWindow.Top = this.Top;
-            topListWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var topListWindow = new TopListWindow(0);
+                topListWindow.Left = this.Left;
+                topListWindow.Top = this.Top;
+                topListWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuSearch_Click(object sender, RoutedEventArgs e)
         {
-            var searchWindow = new SearchWindow();
-            searchWindow.Left = this.Left;
-            searchWindow.Top = this.Top;
-            searchWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var searchWindow = new SearchWindow();
+                searchWindow.Left = this.Left;
+                searchWindow.Top = this.Top;
+                searchWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.Left = this.Left;
-            settingsWindow.Top = this.Top;
-            settingsWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var settingsWindow = new SettingsWindow();
+                settingsWindow.Left = this.Left;
+                settingsWindow.Top = this.Top;
+                settingsWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
         #endregion
 
@@ -122,6 +151,15 @@ namespace CoinView.Views
             AppLanguage.Default.Save();
 
             UpdateLanguage(culture);
+        }
+
+        private void OpenNoConnectionWindow()
+        {
+            var noConnectionWindow = new NoConnectionWindow();
+            noConnectionWindow.Left = this.Left;
+            noConnectionWindow.Top = this.Top;
+            noConnectionWindow.Show();
+            Close();
         }
 
         private void UpdateLanguage(string culture)
@@ -189,6 +227,22 @@ namespace CoinView.Views
         private void btnBlackTheme_Click(object sender, RoutedEventArgs e)
         {
             SetTheme("BlackTheme");
+        }
+
+        private bool IsInternetAvailable()
+        {
+            using (var ping = new Ping())
+            {
+                try
+                {
+                    var reply = ping.Send("8.8.8.8", 1000); // Google DNS сервер
+                    return reply.Status == IPStatus.Success;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }

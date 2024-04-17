@@ -1,0 +1,66 @@
+﻿<Window x:Class="CoinView.Views.NoConnectionWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CoinView.Views"
+        mc:Ignorable="d"
+        Icon="../Resources/logo.ico" Title="" WindowStyle="None" Height="450" Width="800" ResizeMode="NoResize" Loaded="Window_Loaded">
+    <Window.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="..\Resources\Styles.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Window.Resources>
+    <Grid>
+        <StackPanel>
+            <!--Верхня панель-->
+            <Grid  Height="39" VerticalAlignment="Top" Background="{DynamicResource TopPanel}" MouseLeftButtonDown="Grid_MouseLeftButtonDown">
+                <Label Content="ПОМИЛКА" Foreground="{DynamicResource Text}" FontSize="22" Margin="35,-2,0,2" FontWeight="Medium" FontFamily="Dubai"/>
+                <!--Кнопка меню-->
+                <Button x:Name="btnMenu" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Left" Margin="8,8,0,8">
+                    <Button.Content>
+                        <Canvas Width="17" Height="18">
+                            <Line X1="0" Y1="3" X2="17" Y2="3" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="9" X2="17" Y2="9" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка приховати-->
+                <Button x:Name="btnHide" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,40,0" Click="btnHide_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="15" X2="17" Y2="15" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+                <!--Кнопка закрити-->
+                <Button x:Name="btnClose" Style="{StaticResource ButtonTitleBar}" Background="{DynamicResource TopPanelButtonBG}" Height="23" Width="23" HorizontalAlignment="Right" Margin="0,0,8,0" Click="btnClose_Click">
+                    <Button.Content>
+                        <Canvas Width="17" Height="17">
+                            <Line X1="0" Y1="0" X2="17" Y2="17" Stroke="#929292" StrokeThickness="3" />
+                            <Line X1="0" Y1="17" X2="17" Y2="0" Stroke="#929292" StrokeThickness="3" />
+                        </Canvas>
+                    </Button.Content>
+                </Button>
+            </Grid>
+            <!--Вікно програми-->
+            <Grid Height="411" Background="{DynamicResource MainWindowBorder}">
+                <Grid Margin="8" Background="{DynamicResource MainWindowBG}">
+                    <Label Content="Виникла помилка: Відсутнє інтернет з'єднання" Foreground="{DynamicResource Text}" FontSize="30" HorizontalAlignment="Center" FontFamily="Dubai" Margin="0,0,0,340"/>
+                    <Label Content=":(" Foreground="{DynamicResource Text}" FontSize="50" VerticalAlignment="Center" HorizontalAlignment="Center" FontFamily="Dubai"/>
+
+                    <Label x:Name="lbPopupText" Content="Спробуйте пізніше" Foreground="{DynamicResource Text}" HorizontalAlignment="Right" FontSize="20" FontFamily="Dubai" Visibility="Collapsed" Margin="0,347,187,10" FontWeight="Bold" Width="205"/>
+                    <Button x:Name="btnReconnect" Content="Перепідключення" Style="{StaticResource NormalButton}" Foreground="{DynamicResource Text}" Background="{DynamicResource MenuButtonBG}" Width="172" Height="38" Margin="602,347,10,10" FontFamily="Dubai" FontSize="16" FontWeight="Medium" Click="btnReconnect_Click">
+                        <Button.Effect>
+                            <DropShadowEffect BlurRadius="8" Direction="270" Opacity="0.25"/>
+                        </Button.Effect>
+                    </Button>
+
+                </Grid>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Window>

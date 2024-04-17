@@ -3,7 +3,6 @@ using CoinView.Services;
 using CoinView.Utils;
 using System;
 using System.Collections.Generic;
-using System.Net.Http;
 using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
@@ -33,15 +32,8 @@ namespace CoinView.Views
 		{
 			InitializeComponent();
 			FillInList();
-            if (IsInternetAvailable())
-			{
-				UpdateCurrencyData();
-				LoadDictionaries();
-			}
-			else
-			{
-				// відмалювати повідомлення про відсутнє інтернет з'єднання
-			}
+            UpdateCurrencyData();
+            LoadDictionaries();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -101,39 +93,60 @@ namespace CoinView.Views
 
         private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
 		{
-			var topListWindow = new TopListWindow(0);
-			topListWindow.Left = this.Left;
-			topListWindow.Top = this.Top;
-			topListWindow.Show();
-			Close();
+			if (IsInternetAvailable())
+			{
+				var topListWindow = new TopListWindow(0);
+				topListWindow.Left = this.Left;
+				topListWindow.Top = this.Top;
+				topListWindow.Show();
+				Close();
+			}
+			else
+			{
+				OpenNoConnectionWindow();
+			}
         }
 
         private void btnMenuSearch_Click(object sender, RoutedEventArgs e)
         {
-			var searchWindow = new SearchWindow();
-			searchWindow.Left = this.Left;
-			searchWindow.Top = this.Top;
-			searchWindow.Show();
-			Close();
+            if (IsInternetAvailable())
+            {
+				var searchWindow = new SearchWindow();
+				searchWindow.Left = this.Left;
+				searchWindow.Top = this.Top;
+				searchWindow.Show();
+				Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.Left = this.Left;
-            settingsWindow.Top = this.Top;
-            settingsWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+				var settingsWindow = new SettingsWindow();
+				settingsWindow.Left = this.Left;
+				settingsWindow.Top = this.Top;
+				settingsWindow.Show();
+				Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnChart1_Click(object sender, RoutedEventArgs e)
         {
-			OpenChartWindow(0);
+            OpenChartWindow(0);
         }
 
         private void btnChart2_Click(object sender, RoutedEventArgs e)
         {
-            OpenChartWindow(1);
+			OpenChartWindow(1);
         }
 
         private void btnChart3_Click(object sender, RoutedEventArgs e)
@@ -232,39 +245,62 @@ namespace CoinView.Views
 
 		private async void UpdateCurrencyData()
 		{
-			ApiService apiService = new ApiService();
-			await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
-			currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
-
-			for (int i = 0; i < lbCurrencyNames.Count; i++)
+			if (!IsInternetAvailable())
 			{
-				lbCurrencyNames[i].Content = currencyRoot.Data[i].Name;
-				lbCurrencySymbols[i].Content = currencyRoot.Data[i].Symbol;
-				lbCurrencyPrices[i].Content = $"${currencyRoot.Data[i].PriceUsd}";
+				OpenNoConnectionWindow();
+            }
+			else
+			{
+				ApiService apiService = new ApiService();
+				await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
+				currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
 
-				if (currencyRoot.Data[i].ChangePercent24Hr > 0)
+				for (int i = 0; i < lbCurrencyNames.Count; i++)
 				{
-					lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Green);
-					lbCurrencyChangePercents[i].Content = $"↑ {currencyRoot.Data[i].ChangePercent24Hr:F3}%";
+					lbCurrencyNames[i].Content = currencyRoot.Data[i].Name;
+					lbCurrencySymbols[i].Content = currencyRoot.Data[i].Symbol;
+					lbCurrencyPrices[i].Content = $"${currencyRoot.Data[i].PriceUsd}";
+
+					if (currencyRoot.Data[i].ChangePercent24Hr > 0)
+					{
+						lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Green);
+						lbCurrencyChangePercents[i].Content = $"↑ {currencyRoot.Data[i].ChangePercent24Hr:F3}%";
+					}
+					else
+					{
+						lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Red);
+						lbCurrencyChangePercents[i].Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr:F3}%";
+					}
 				}
-				else
-				{
-					lbCurrencyChangePercents[i].Foreground = new SolidColorBrush(Colors.Red);
-					lbCurrencyChangePercents[i].Content = $"↓ {currencyRoot.Data[i].ChangePercent24Hr:F3}%";
-				}
+
+				string updateText = (string)TryFindResource("DateTimeLable");
+				lbDateTime.Content = $"{updateText} {currencyRoot.DateTime}";
 			}
-
-            string updateText = (string)TryFindResource("DateTimeLable");
-            lbDateTime.Content = $"{updateText} {currencyRoot.DateTime}";
 		}
 
 		private void OpenChartWindow(int index)
 		{
-            var chartWindow = new ChartWindow(index, 1);
-            chartWindow.Left = this.Left;
-            chartWindow.Top = this.Top;
-            chartWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var chartWindow = new ChartWindow(index, 1);
+                chartWindow.Left = this.Left;
+                chartWindow.Top = this.Top;
+                chartWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
+        }
+
+		private void OpenNoConnectionWindow()
+		{
+            var noConnectionWindow = new NoConnectionWindow();
+            noConnectionWindow.Left = this.Left;
+            noConnectionWindow.Top = this.Top;
+            noConnectionWindow.Show();
+			Close();
         }
 
         private void UpdateLanguage(string culture)

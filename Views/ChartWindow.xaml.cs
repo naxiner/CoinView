@@ -7,6 +7,7 @@ using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -96,83 +97,147 @@ namespace CoinView.Views
         
         private void btnMenuHome_Click(object sender, RoutedEventArgs e)
         {
-            var homeWindow = new HomeWindow();
-            homeWindow.Left = this.Left;
-            homeWindow.Top = this.Top;
-            homeWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var homeWindow = new HomeWindow();
+                homeWindow.Left = this.Left;
+                homeWindow.Top = this.Top;
+                homeWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuTop100_Click(object sender, RoutedEventArgs e)
         {
-            var topListWindow = new TopListWindow(0);
-            topListWindow.Left = this.Left;
-            topListWindow.Top = this.Top;
-            topListWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var topListWindow = new TopListWindow(0);
+                topListWindow.Left = this.Left;
+                topListWindow.Top = this.Top;
+                topListWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnMenuSearch_Click(object sender, RoutedEventArgs e)
         {
-            var searchWindow = new SearchWindow();
-            searchWindow.Left = this.Left;
-            searchWindow.Top = this.Top;
-            searchWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var searchWindow = new SearchWindow();
+                searchWindow.Left = this.Left;
+                searchWindow.Top = this.Top;
+                searchWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
+        
         private void btnMenuSettings_Click(object sender, RoutedEventArgs e)
         {
-            var settingsWindow = new SettingsWindow();
-            settingsWindow.Left = this.Left;
-            settingsWindow.Top = this.Top;
-            settingsWindow.Show();
-            Close();
+            if (IsInternetAvailable())
+            {
+                var settingsWindow = new SettingsWindow();
+                settingsWindow.Left = this.Left;
+                settingsWindow.Top = this.Top;
+                settingsWindow.Show();
+                Close();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btn1day_Click(object sender, RoutedEventArgs e)
         {
-            currentDays = 1;
-            UpdateCurrencyChart();
+            if (IsInternetAvailable())
+            {
+                currentDays = 1;
+                UpdateCurrencyChart();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btn7days_Click(object sender, RoutedEventArgs e)
         {
-            currentDays = 7;
-            UpdateCurrencyChart();
+            if (IsInternetAvailable())
+            {
+                currentDays = 7;
+                UpdateCurrencyChart();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btn1month_Click(object sender, RoutedEventArgs e)
         {
-            currentDays = 30;
-            UpdateCurrencyChart();
+            if (IsInternetAvailable())
+            {
+                currentDays = 30;
+                UpdateCurrencyChart();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
-            UpdateCurrencyData();
-            UpdateCurrencyChart();
+            if (IsInternetAvailable())
+            {
+                UpdateCurrencyData();
+                UpdateCurrencyChart();
+            }
+            else
+            {
+                OpenNoConnectionWindow();
+            }
         }
 
         private void btnReturn_Click(object sender, RoutedEventArgs e)
         {
-            switch (previousWindow)
+            if (!IsInternetAvailable())
             {
-                case 1:
-                    var homeWindow = new HomeWindow();
-                    homeWindow.Left = this.Left;
-                    homeWindow.Top = this.Top;
-                    homeWindow.Show();
-                    Close();
-                    break;
-                case 2:
-                    var topListWindow = new TopListWindow(currentIndex);
-                    topListWindow.Left = this.Left;
-                    topListWindow.Top = this.Top;
-                    topListWindow.Show();
-                    Close();
-                    break;
-                default:
-                    break;
+                OpenNoConnectionWindow();
+            }
+            else
+            {
+                switch (previousWindow)
+                {
+                    case 1:
+                        var homeWindow = new HomeWindow();
+                        homeWindow.Left = this.Left;
+                        homeWindow.Top = this.Top;
+                        homeWindow.Show();
+                        Close();
+                        break;
+                    case 2:
+                        var topListWindow = new TopListWindow(currentIndex);
+                        topListWindow.Left = this.Left;
+                        topListWindow.Top = this.Top;
+                        topListWindow.Show();
+                        Close();
+                        break;
+                    default:
+                        break;
+                }
             }
         }
         #endregion
@@ -180,12 +245,19 @@ namespace CoinView.Views
         #region CHART
         private async void UpdateCurrencyData()
         {
-            await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
-            currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
+            if (!IsInternetAvailable())
+            {
+                OpenNoConnectionWindow();
+            }
+            else
+            {
+                await apiService.GetCrpytoDataAsync(Constants.ApiUrl, Constants.FilePathData);
+                currencyRoot = apiService.GetDeserializedData(Constants.FilePathData);
 
-            string updateText = (string)TryFindResource("DateTimeLable");
-            lbDateTime.Content = $"{updateText} {currencyRoot.DateTime}";
-            UpdateCurrencyChart();
+                string updateText = (string)TryFindResource("DateTimeLable");
+                lbDateTime.Content = $"{updateText} {currencyRoot.DateTime}";
+                UpdateCurrencyChart();
+            }
         }
         
         private async Task<List<CurrencyHistory>> UpdateCurrencyHistory()
@@ -246,6 +318,15 @@ namespace CoinView.Views
         }
         #endregion
 
+        private void OpenNoConnectionWindow()
+        {
+            var noConnectionWindow = new NoConnectionWindow();
+            noConnectionWindow.Left = this.Left;
+            noConnectionWindow.Top = this.Top;
+            noConnectionWindow.Show();
+            Close();
+        }
+
         private void UpdateLanguage(string culture)
         {
             languageDictionary.Source = new Uri($"..\\Resources\\{culture}\\Strings.{culture}.xaml", UriKind.Relative);
@@ -270,6 +351,22 @@ namespace CoinView.Views
             // Додавання словників до колекції
             this.Resources.MergedDictionaries.Add(languageDictionary);
             this.Resources.MergedDictionaries.Add(themeDictionary);
+        }
+
+        private bool IsInternetAvailable()
+        {
+            using (var ping = new Ping())
+            {
+                try
+                {
+                    var reply = ping.Send("8.8.8.8", 1000); // Google DNS сервер
+                    return reply.Status == IPStatus.Success;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
         }
     }
 }
