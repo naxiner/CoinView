@@ -3,6 +3,8 @@ using CoinView.Services;
 using CoinView.Utils;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Net.NetworkInformation;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -31,8 +33,15 @@ namespace CoinView.Views
 		{
 			InitializeComponent();
 			FillInList();
-			UpdateCurrencyData();
-            LoadDictionaries();
+            if (IsInternetAvailable())
+			{
+				UpdateCurrencyData();
+				LoadDictionaries();
+			}
+			else
+			{
+				// відмалювати повідомлення про відсутнє інтернет з'єднання
+			}
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -283,5 +292,21 @@ namespace CoinView.Views
 			this.Resources.MergedDictionaries.Add(languageDictionary);
 			this.Resources.MergedDictionaries.Add(themeDictionary);
 		}
+
+        private bool IsInternetAvailable()
+        {
+            using (var ping = new Ping())
+            {
+                try
+                {
+                    var reply = ping.Send("8.8.8.8", 1000); // Google DNS сервер
+                    return reply.Status == IPStatus.Success;
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+        }
     }
 }
